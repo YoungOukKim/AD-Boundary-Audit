@@ -1,0 +1,9 @@
+"cell_type","n_algorithms_MCI_stage","n_algorithms_master_event","median_breakpoint_MCI_stage","median_breakpoint_master_event","min_breakpoint_MCI_stage","min_breakpoint_master_event","max_breakpoint_MCI_stage","max_breakpoint_master_event"
+"Astrocyte",10,9,0.557,0.25,0.3,0.2,0.65,0.285
+"Endothelial",11,8,0.5,0.2,0.3,0.15,0.85,0.257
+"Excitatory",11,8,0.4,0.225,0.3,0.2,0.7,0.257
+"Inhibitory",10,9,0.475,0.2,0.3,0.15,0.65,0.298
+"Microglia",13,6,0.5,0.2,0.3,0.2,0.9,0.257
+"OPC",11,8,0.5,0.2,0.3,0.15,0.65,0.257
+"Oligodendrocyte",17,2,0.8,0.219,0.45,0.15,0.9,0.288
+"VLMC",14,5,0.5,0.2,0.3,0.2,0.75,0.257

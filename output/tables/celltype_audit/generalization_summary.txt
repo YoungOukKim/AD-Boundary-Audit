@@ -1,0 +1,8 @@
+CELL-TYPE GENERALIZATION AUDIT (reproduced from bundled bin-means)
+Identical 9-algorithm consensus on two independent cell-type panels:
+
+Astrocyte   primary(Ward) CPS = 0.207  (4/19 components within +/-0.05) 
+Microglia   primary(Ward) CPS = 0.201  (6/19 components within +/-0.05) 
+
+=> The audit localizes a concordant early transition (CPS ~0.20) in both
+   panels, confirming the framework is panel- and cell-type-agnostic.

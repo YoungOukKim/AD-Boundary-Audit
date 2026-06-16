@@ -1,0 +1,10 @@
+Setting,Modality (n),Recovered?,Key evidence
+SEA-AD MTG,"snRNA (67,419)",Yes — 7/8 cell types,Reactive activation GFAP/FKBP5; perm P&lt;0.001
+SEA-AD A9 (prefrontal),snRNA,Attenuated — 1/8,HMOX1 Δz ≈ −0.06
+Leng EC (independent),snRNA (n=10),No — opposite direction,FTH1 +0.54; HMOX1 floor; +control 8/8 down
+HMOX1 (lead marker),CSF SomaScan / TMT-MS,No — reversed / undetected,SomaScan ρ=−0.11 (opposite); TMT-MS absent
+GFAP (re-anchor),CSF SomaScan,Yes — consistent,"ρ=−0.17, P=4×10⁻⁶ (rises with impairment)"
+Metabolic module avg (MTG vs A9),snRNA,Artifact (not conserved),Global downshift; post-correction 8 vs 9
+Astrocytic MCT4 export (companion),snRNA donor-level,Real (within-region),−43%; dissociates from V-ATPase; MCT2 import preserved
+PTGDS (companion marker),snRNA + cross-species + bulk,Yes — passes,Conserved zebrafish/mouse; ROSMAP/Banner P=3.4×10⁻³
+ADNI CSF,"proteomics (343/1,104)",Partial; discordant,HMOX1 sign reversal; MMSE-26 anchored

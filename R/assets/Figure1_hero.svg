@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 560" font-family="Arial, Helvetica, sans-serif">
+<defs>
+<marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#1F3864"/></marker>
+<marker id="arrG" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#1FA39A"/></marker>
+<marker id="arrR" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#C0392B"/></marker>
+</defs>
+<rect x="0" y="0" width="1480" height="560" fill="#ffffff"/>
+<text x="40" y="46" font-size="27" font-weight="700" fill="#1F3864">A minimal reproducibility standard for trajectory-based molecular staging</text>
+<text x="40" y="78" font-size="17" fill="#555">A candidate boundary is promoted to a biological stage only if it survives four sequential reproducibility tests.</text>
+
+<!-- candidate boundary -->
+<rect x="40" y="150" width="190" height="150" rx="10" fill="#EAF1FA" stroke="#2E75B6" stroke-width="2"/>
+<text x="135" y="188" font-size="18" font-weight="700" fill="#1F3864" text-anchor="middle">Candidate</text>
+<text x="135" y="212" font-size="18" font-weight="700" fill="#1F3864" text-anchor="middle">boundary</text>
+<text x="135" y="244" font-size="13.5" fill="#555" text-anchor="middle">detected on a</text>
+<text x="135" y="262" font-size="13.5" fill="#555" text-anchor="middle">single-cell CPS</text>
+<text x="135" y="280" font-size="13.5" fill="#555" text-anchor="middle">trajectory</text>
+
+<!-- four gates -->
+<g font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">
+<rect x="290" y="160" width="180" height="130" rx="10" fill="#2E75B6"/>
+<text x="380" y="212">Algorithmic</text><text x="380" y="234">consensus</text>
+<text x="380" y="266" font-size="12.5" font-weight="400" fill="#DCE8F6">9 algorithms,</text><text x="380" y="282" font-size="12.5" font-weight="400" fill="#DCE8F6">4 families</text>
+<rect x="510" y="160" width="160" height="130" rx="10" fill="#2E75B6"/>
+<text x="590" y="222">Region</text>
+<text x="590" y="254" font-size="12.5" font-weight="400" fill="#DCE8F6">MTG · PFC · EC</text>
+<rect x="710" y="160" width="160" height="130" rx="10" fill="#2E75B6"/>
+<text x="790" y="222">Cohort</text>
+<text x="790" y="254" font-size="12.5" font-weight="400" fill="#DCE8F6">independent</text><text x="790" y="270" font-size="12.5" font-weight="400" fill="#DCE8F6">datasets</text>
+<rect x="910" y="160" width="170" height="130" rx="10" fill="#2E75B6"/>
+<text x="995" y="214">Molecular</text><text x="995" y="236">modality</text>
+<text x="995" y="268" font-size="12.5" font-weight="400" fill="#DCE8F6">snRNA ↔ CSF</text>
+</g>
+
+<!-- flow arrows -->
+<g stroke="#1F3864" stroke-width="2.5" fill="none">
+<line x1="230" y1="225" x2="286" y2="225" marker-end="url(#arr)"/>
+<line x1="470" y1="225" x2="506" y2="225" marker-end="url(#arr)"/>
+<line x1="670" y1="225" x2="706" y2="225" marker-end="url(#arr)"/>
+<line x1="870" y1="225" x2="906" y2="225" marker-end="url(#arr)"/>
+</g>
+
+<!-- pass branch -->
+<path d="M1080,200 H1150 V120 H1210" stroke="#1FA39A" stroke-width="2.5" fill="none" marker-end="url(#arrG)"/>
+<rect x="1210" y="70" width="230" height="110" rx="10" fill="#E6F5F3" stroke="#1FA39A" stroke-width="2.5"/>
+<text x="1325" y="104" font-size="17" font-weight="700" fill="#13776F" text-anchor="middle">PASS all four</text>
+<text x="1325" y="130" font-size="15" font-weight="700" fill="#1F3864" text-anchor="middle">Class II — generalizable</text>
+<text x="1325" y="152" font-size="13.5" fill="#555" text-anchor="middle">promote to biological stage</text>
+<text x="1325" y="171" font-size="13.5" font-weight="700" fill="#13776F" text-anchor="middle">e.g. PTGDS  (passes all)</text>
+
+<!-- fail branch -->
+<path d="M1080,250 H1150 V340 H1210" stroke="#C0392B" stroke-width="2.5" fill="none" marker-end="url(#arrR)"/>
+<rect x="1210" y="290" width="230" height="110" rx="10" fill="#FBECEA" stroke="#C0392B" stroke-width="2.5"/>
+<text x="1325" y="324" font-size="17" font-weight="700" fill="#A03326" text-anchor="middle">FAIL any test</text>
+<text x="1325" y="350" font-size="15" font-weight="700" fill="#1F3864" text-anchor="middle">Class I — dataset-specific</text>
+<text x="1325" y="372" font-size="13.5" fill="#555" text-anchor="middle">do not promote / artefact</text>
+<text x="1325" y="391" font-size="13.5" font-weight="700" fill="#A03326" text-anchor="middle">e.g. HMOX1  (fails ≥1)</text>
+
+<!-- soul line -->
+<rect x="40" y="470" width="1400" height="56" rx="8" fill="#1F3864"/>
+<text x="740" y="505" font-size="18.5" font-style="italic" font-weight="600" fill="#ffffff" text-anchor="middle">A large effect size in one atlas is not, on its own, evidence of a generalizable boundary.</text>
+</svg>

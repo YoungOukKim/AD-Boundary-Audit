@@ -1,0 +1,4 @@
+"gene","csf_dir","brain_rna_dir","brain_prot_dir","brain_module","brain_cohorts","brain_regions","class","axis","verdict","prereg_prediction","match"
+"NPTX1","down","flat","flat","synaptic-machinery(stable)",4,6,"Class I / modality-specific","MODALITY: CSF signal without a brain-tissue transition","CSF-prognostic but NOT a brain transcriptional boundary","Class I / modality-specific","MATCH"
+"NPTXR","down","flat","flat","synaptic-machinery(stable)",4,6,"Class I / modality-specific","MODALITY: CSF signal without a brain-tissue transition","CSF-prognostic but NOT a brain transcriptional boundary","Class I / modality-specific","MATCH"
+"NPTX2","down","down","down","activity-dependent(declining)",4,6,"Class II","cross-modality + cross-region + cross-cohort concordant","brain-replicating transition (true generalizable marker)","Class II","MATCH"

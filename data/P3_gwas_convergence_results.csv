@@ -1,0 +1,3 @@
+"cell_type","n_nuclei","n_pre","n_post","n_gwas","mean_abs_dz","mean_signed_dz","null_mean","null_sd","emp_P"
+"Astro",67419,2354,65065,41,0.0722,0.0033,0.0641,0.0111,0.2188
+"Micro-PVM",38905,2478,36427,41,0.0881,0.086,0.0698,0.0092,0.029

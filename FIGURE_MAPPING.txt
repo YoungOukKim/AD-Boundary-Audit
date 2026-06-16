@@ -1,0 +1,38 @@
+Repository figure numbers now match the manuscript.
+  Figure 1  schematic reproducibility-audit framework  (R/assets/Figure1_hero.svg; not R-generated)
+  Figure 2  R/figures/Figure2_consensus.R           -> output/figures/Figure2.png
+  Figure 3  R/figures/Figure3_generalization.R + Figure3b_CSF.R -> Figure3_panelA/B.png
+  Figure 4  R/figures/Figure4_metabolic_artifact.R  -> Figure4.png
+  Figure 5  R/figures/Figure5_brainCSF_prognosis.R  -> Figure5.png  (panel b Cox: R/analysis/Figure5b_prognosis_cox.R)
+  Figure 6  R/figures/Figure6_driver_signatures.R   -> Figure6.png
+
+Cell-type generalization audit (Discussion, not a numbered figure):
+  data/celltype_audit/binmeans_{Astrocyte,Microglia}.csv  (bundled inputs)
+  R/analysis/celltype_generalization_audit.R   -> reproduces boundary calls from bundled bin-means
+  R/analysis/celltype_audit_from_raw.R         -> regenerates bin-means from SEA-AD h5ad (data-external/)
+  output/tables/celltype_audit/                -> multimethod_*.csv, headtohead_summary.txt, generalization_summary.txt
+  R/figures/SuppFig_celltype_generalization.R -> output/figures/SuppFig_celltype_generalization.{png,tif}
+       (Supplementary Figure: microglia-panel generalization of the audit, CPS~0.20 concordant)
+  R/figures/SuppFig_global_correction_control.R -> output/figures/SuppFig_global_correction_control.{png,tif}
+       (Supplementary Figure: housekeeping negative control flat pre/post genome-wide correction)
+       input: data/metabolic_correction/panel_correction_z.csv
+
+Added analyses (R/analysis/):
+  boundary_detection.R                -> standalone 9-algorithm/19-component engine (set.seed 42)
+  verify_correction_consistency.R     -> HK-flat & METAB-conservation under one genome-wide correction
+                                         input: data/metabolic_correction/panel_correction_z.csv
+  external_marker_audit.R             -> adjudicates external candidate markers (NPTX1/NPTXR/NPTX2/NRGN/SNAP25/VAMP2)
+                                         from SEA-AD neurons (h5ad in data-external/); engine via boundary_detection.R
+  external_marker_crosscohort.R       -> independent cross-cohort adjudication of NPTX1/NPTXR/NPTX2
+                                         (Dai2026 CSF; Lao2026 4-cohort MTG; Xiao2017 6-region) via P3 Class logic
+                                         -> output/tables/external_markers/crosscohort_verdict.csv
+  external_marker_panel_audit.R       -> panel adjudication of 14 promising AD markers (GFAP, CHI3L1/YKL-40,
+                                         NRGN, SNAP25, VAMP2, TREM2/sTREM2, VGF, SCG2, CNTN2, NPTX1/2/R, PTGDS, HMOX1)
+                                         via 4-axis Class logic -> output/tables/external_markers/panel_verdict.csv
+  external_marker_audit.R (EXPANDED)  -> SEA-AD per-cell audit of all 14 panel markers, routed by cell type
+                                         (Astro: GFAP/CHI3L1/PTGDS/HMOX1; Micro: TREM2; Neuron: NPTX1/2/R,NRGN,
+                                         SNAP25,VAMP2,VGF,SCG2,CNTN2) -> sea_ad_panel_verdict.csv
+  panel_finalize.R                    -> merge SEA-AD per-cell + cross-cohort literature -> final_panel_verdict.csv
+  external_marker_audit_generic.R     -> cohort-GENERIC corrected trajectory audit (donor-level, bin-free
+                                         Spearman vs progression, shape, bin-sensitivity). Parameterised for an
+                                         INDEPENDENT cohort (e.g., Leng2021 EC GSE147528, Braak axis) -> <COHORT>_panel_verdict.csv

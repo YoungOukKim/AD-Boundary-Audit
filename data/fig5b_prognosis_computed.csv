@@ -1,0 +1,4 @@
+label,HR,CI_lower,CI_upper,group
+"MMSE-threshold boundary (<=26)\n  predictor is cognition; endpoint MMSE-circular",3.79,3.17,4.53,circular
+"Molecular boundary (PC1), unadjusted",0.99,0.91,1.08,molecular
+"Molecular boundary (PC1)\n  adjusted: baseline MMSE, amyloid, tau",0.92,0.84,1.00,molecular_adj

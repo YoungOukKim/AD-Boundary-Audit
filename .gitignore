@@ -1,0 +1,25 @@
+# ---- controlled-access inputs: never commit (keep only the README) ----
+data-external/*
+!data-external/README.txt
+*.h5ad
+*.h5
+*.loom
+*.rda
+*.rds
+*.RData
+
+# ---- R session / build artefacts ----
+.Rhistory
+.Rapp.history
+.Ruserdata
+.Rproj.user/
+*.Rproj
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+*~
+.vscode/
+.idea/
+
+# NOTE: output/ is intentionally tracked (committed reference figures & tables).

@@ -1,0 +1,6 @@
+Reproducibility axis,HMOX1 (Class I),PTGDS (Class II)†
+Algorithmic consensus (MTG),Pass — co-defines the CPS-0.21 boundary,Pass
+Region (A9; EC),"Fail — attenuated in A9, reversed in EC",Pass
+Cohort / external tissue,Fail — not reproduced,"Pass — ROSMAP, Banner proteomes"
+Modality (CSF; cross-species),Fail — undetected / reversed in CSF,"Pass — conserved in zebrafish, mouse"
+Verdict,Dataset-specific,Generalizable

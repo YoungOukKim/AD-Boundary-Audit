@@ -1,0 +1,73 @@
+
+> cat("HEAD-TO-HEAD: 4-AXIS AUDIT, IDENTICAL PERMUTATION NULL\n")
+HEAD-TO-HEAD: 4-AXIS AUDIT, IDENTICAL PERMUTATION NULL
+
+> cat("======================================================\n")
+======================================================
+
+> cat(sprintf("N_PERM=%d  BG_POOL=%d  MIN_DETECT=%.2f\n\n", N_PERM, BG_POOL_SIZE, MIN_DETECT))
+N_PERM=1000  BG_POOL=3000  MIN_DETECT=0.02
+
+
+> fmt<-function(r) sprintf("%-11s n=%6d panel=%2d bg=%4d | primary(Ward) CPS=%.3f (%2d/19 methods) | null PC1-piecewise %.2f-%.2f(med %.2f) | specific ..." ... [TRUNCATED] 
+
+> cat(fmt(A)); cat(fmt(M))
+Astrocyte   n= 70009 panel=44 bg=1292 | primary(Ward) CPS=0.207 ( 3/19 methods) | null PC1-piecewise 0.26-0.75(med 0.54) | specificity@primary=0/1000 (0.000) | late@0.54=824/1000 (0.824)
+Microglia   n= 40000 panel=44 bg=1162 | primary(Ward) CPS=0.201 ( 6/19 methods) | null PC1-piecewise 0.26-0.76(med 0.26) | specificity@primary=0/1000 (0.000) | late@0.54=0/1000 (0.000)
+
+> cat("\nStatistic = PUBLISHED PC1-piecewise null (manuscript: astro 0/1000 @0.21, ~40% @0.54).\n")
+
+Statistic = PUBLISHED PC1-piecewise null (manuscript: astro 0/1000 @0.21, ~40% @0.54).
+
+> cat("specificity@primary LOW => boundary NOT reproduced by random panels => panel-specific.\n\n")
+specificity@primary LOW => boundary NOT reproduced by random panels => panel-specific.
+
+
+> cat("--- Astrocyte per-algorithm ---\n"); print(A$obs,row.names=FALSE)
+--- Astrocyte per-algorithm ---
+             algorithm breakpoint
+           Hier_k3_bp1  0.2068297
+         KMeans_k3_bp1  0.2068297
+ Trajectory_inflection  0.2435726
+               PCA_PC3  0.2635726
+         Segmented_PC2  0.2726447
+           Hier_k3_bp2  0.2868881
+               PCA_PC2  0.3334241
+         Segmented_PC3  0.3870632
+                DP_PC2  0.3880491
+         KMeans_k3_bp2  0.4928790
+             CUSUM_PC2  0.5398635
+               PCA_PC1  0.5429789
+         Mahal_max_gap  0.5971094
+                DP_PC1  0.5971094
+                DP_PC3  0.5971094
+             CUSUM_PC1  0.6543552
+             CUSUM_PC3  0.6543552
+         Segmented_PC1  0.8385116
+         Variance_jump  0.8864565
+
+> cat("\n--- Microglia per-algorithm ---\n"); print(M$obs,row.names=FALSE)
+
+--- Microglia per-algorithm ---
+             algorithm breakpoint
+             CUSUM_PC1  0.1627416
+         Mahal_max_gap  0.2008015
+           Hier_k3_bp1  0.2008015
+         KMeans_k3_bp1  0.2008015
+ Trajectory_inflection  0.2388615
+         Segmented_PC2  0.2389615
+               PCA_PC1  0.2588615
+         Segmented_PC1  0.2705129
+             CUSUM_PC3  0.3344648
+                DP_PC1  0.3908499
+               PCA_PC3  0.4572532
+                DP_PC3  0.4934300
+               PCA_PC2  0.5506140
+                DP_PC2  0.6008798
+             CUSUM_PC2  0.6621344
+         Segmented_PC3  0.6621692
+           Hier_k3_bp2  0.8852896
+         KMeans_k3_bp2  0.8852896
+         Variance_jump  0.8852896
+
+> sink()
