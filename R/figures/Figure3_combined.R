@@ -60,8 +60,8 @@ pR <- ggplot(rho, aes(marker, rho, fill = col)) +
 
 # ---- portrait assembly: a full-width on top, b (left|right) below ----
 f3a <- f3a + labs(tag = "a") +
-  theme(plot.tag = element_text(face = "bold", size = 13), plot.tag.position = c(0.015, 0.985))
+  theme(plot.tag = element_text(face = "bold", size = 8), plot.tag.position = c(0.015, 0.985))
 pL  <- pL + labs(tag = "b") +
-  theme(plot.tag = element_text(face = "bold", size = 13), plot.tag.position = c(0.02, 0.97))
+  theme(plot.tag = element_text(face = "bold", size = 8), plot.tag.position = c(0.02, 0.97))
 fig3 <- f3a / (pL | pR) + plot_layout(heights = c(3.0, 1))
 save_fig(fig3, "Figure3.png", w = 6.5, h = 8.8)

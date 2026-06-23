@@ -60,5 +60,5 @@ f1c <- ggplot(long, aes(binlab, marker, fill = z)) +
 # Portrait layout for legibility in the manuscript body: drivers (a,b) on top,
 # the 44-row heatmap (c) full-width below so its labels stay >=7 pt at page size.
 fig1 <- ((f1a | f1b) / f1c) + plot_layout(heights = c(1, 3.0)) +
-  plot_annotation(tag_levels = "a") & theme(plot.tag = element_text(face = "bold", size = 13))
+  plot_annotation(tag_levels = "a") & theme(plot.tag = element_text(face = "bold", size = 8))
 save_fig(fig1, "Figure2.png", w = 6.5, h = 8.8)
