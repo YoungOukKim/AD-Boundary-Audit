@@ -28,6 +28,7 @@ message("\n=== R/analysis/CSF_TMT_detection_audit.R ==="); source("R/analysis/CS
 # scaffolds (run if their input CSVs are present)
 src("R/figures/Figure3_generalization.R")
 src("R/figures/Figure3b_CSF.R")
+src("R/figures/Figure3_combined.R")   # combined portrait Figure 3 (a + b) embedded in the manuscript body
 src("R/figures/Figure4_metabolic_artifact.R")
 src("R/figures/SuppFigS2_GWAS.R")
 src("R/figures/SuppFigS3_pseudobulk.R")

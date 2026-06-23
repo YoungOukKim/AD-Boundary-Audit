@@ -18,12 +18,13 @@ driver_bar <- function(csv, title, xlab) {
     geom_col(width = 0.72) + coord_flip() +
     scale_fill_manual(values = c(up = UP, down = DOWN), guide = "none") +
     geom_hline(yintercept = 0, linewidth = 0.4) +
-    labs(title = title, x = NULL, y = xlab) + theme_paper
+    labs(title = title, x = NULL, y = xlab) + theme_paper +
+    theme(plot.title = element_text(size = 10.5))
 }
 f1a <- driver_bar("drivers_master_event_corrected.csv",
                   "Top drivers at CPS\u22480.21", expression(Delta*z~"@0.21"))
 f1b <- driver_bar("drivers_MCI_phase_corrected.csv",
-                  "Top drivers at CPS\u22480.42 (secondary)", expression(Delta*z~"@0.42"))
+                  "Secondary drivers (CPS\u22480.42)", expression(Delta*z~"@0.42"))
 
 # ---- (c): marker x CPS-bin heatmap ----
 bm <- read.csv(file.path(DATA, "SEAAD_44panel_bin_means.csv"), check.names = FALSE)
@@ -50,10 +51,14 @@ f1c <- ggplot(long, aes(binlab, marker, fill = z)) +
   scale_fill_gradientn(colours = RdBu, limits = c(-lim, lim), name = "mean z") +
   labs(title = "Marker \u00d7 CPS-bin mean z (both transitions)", x = "CPS bin", y = NULL) +
   theme_paper +
-  theme(axis.text.y = element_text(size = 6),
-        axis.text.x = element_text(angle = 45, hjust = 1, size = 8),
+  theme(axis.text.y = element_text(size = 7),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 8.5),
+        plot.title = element_text(face = "bold", size = 12),
+        legend.key.height = unit(1.1, "cm"),
         panel.grid = element_blank())
 
-fig1 <- (f1a / f1b | f1c) + plot_layout(widths = c(1, 1.15)) +
-  plot_annotation(tag_levels = "a") & theme(plot.tag = element_text(face = "bold", size = 16.1))
-save_fig(fig1, "Figure2.png", w = 13, h = 8)
+# Portrait layout for legibility in the manuscript body: drivers (a,b) on top,
+# the 44-row heatmap (c) full-width below so its labels stay >=7 pt at page size.
+fig1 <- ((f1a | f1b) / f1c) + plot_layout(heights = c(1, 3.0)) +
+  plot_annotation(tag_levels = "a") & theme(plot.tag = element_text(face = "bold", size = 13))
+save_fig(fig1, "Figure2.png", w = 6.5, h = 8.8)
