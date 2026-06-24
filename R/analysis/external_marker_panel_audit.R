@@ -35,7 +35,7 @@ BASIS <- "literature-encoded endpoint directions (Control vs AD / module), NOT a
 sign <- function(d) ifelse(d=="up",1, ifelse(d=="down",-1, ifelse(d=="up_ns",1, 0)))
 classify <- function(r){
   if (r$region_conflict=="yes")
-    return(c("Class I / region-specific artifact","REFUTED (direction flips across regions)"))
+    return(c("Class I / region-specific artefact","REFUTED (direction flips across regions)"))
   bm <- r$brain_dir!="flat"
   if (!bm && r$csf_dir!="na")
     return(c("Class I / modality-specific","modality-limited: CSF signal, no brain transition"))
@@ -63,10 +63,10 @@ reg <- ifelse(grepl("concordant|tissue\\)$|^Class II \\(tissue\\)",out$class) & 
        ifelse(grepl("INVERSE",out$class),"Class II modality-INVERSE (reinterpreted)",
        ifelse(grepl("divergent",out$class),"modality-divergent",
        ifelse(grepl("modality-specific",out$class),"Class I modality-specific",
-       ifelse(grepl("artifact",out$class),"Class I region artifact (REFUTED)","other")))))
+       ifelse(grepl("artefact",out$class),"Class I region artefact (REFUTED)","other")))))
 print(as.data.frame(table(regime=reg)), row.names=FALSE)
 cat("\nCAVEAT: literature PRIOR (endpoint directions), not a fresh engine run; evidence varies per\n")
 cat("marker (evidence column). Independent computational arbiter = SEA-AD donor-level run.\n")
 cat("\nTakeaway: the panel does NOT uniformly confirm. The framework sorts 'promising'\n")
 cat("markers into generalizable (concordant Class II), brain-loss-with-inverse-CSF,\n")
-cat("modality-specific (CSF-only), and region-specific artifact regimes.\n")
+cat("modality-specific (CSF-only), and region-specific artefact regimes.\n")

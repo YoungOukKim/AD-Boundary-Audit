@@ -2,7 +2,7 @@
 "CHI3L1","Astrocyte","up","up","flat",0.078,"non-monotonic(trough@0.45)","5/5","Class II / concordant","CONFIRMED: brain + CSF same direction, cross-axis","DIVERGENT (lit up vs SEA-AD flat)","Lananna2020/CSF-meta"
 "CNTN2","Neuron","down","down","flat",0.159,"monotonic","4/5","Class II / concordant","CONFIRMED: brain + CSF same direction, cross-axis","DIVERGENT (lit down vs SEA-AD flat)","Amsterdam-DC"
 "GFAP","Astrocyte","up","up","flat",0.105,"non-monotonic(trough@0.65)","4/5","Class II / concordant","CONFIRMED: brain + CSF same direction, cross-axis","DIVERGENT (lit up vs SEA-AD flat)","reactive-astro/plasma"
-"HMOX1","Astrocyte","na","up","flat",-0.046,"monotonic","5/5","Class I / region-specific artifact","REFUTED (direction flips across regions)","DIVERGENT (lit up vs SEA-AD flat)","P3"
+"HMOX1","Astrocyte","na","up","flat",-0.046,"monotonic","5/5","Class I / region-specific artefact","REFUTED (direction flips across regions)","DIVERGENT (lit up vs SEA-AD flat)","P3"
 "NPTX1","Neuron","down","flat","up",0.436,"monotonic","5/5","Class I / modality-specific","modality-limited: CSF signal, no brain transition","DIVERGENT (lit flat vs SEA-AD up)","Dai2026/Lao2026/Xiao2017"
 "NPTX2","Neuron","down","down","down",-0.578,"monotonic","5/5","Class II / concordant","CONFIRMED: brain + CSF same direction, cross-axis","CONFIRMED in SEA-AD","Lao2026/Xiao2017"
 "NPTXR","Neuron","down","flat","down",-0.229,"non-monotonic(trough@0.75)","5/5","Class I / modality-specific","modality-limited: CSF signal, no brain transition","DIVERGENT (lit flat vs SEA-AD down)","Dai2026/Lao2026/Xiao2017"
