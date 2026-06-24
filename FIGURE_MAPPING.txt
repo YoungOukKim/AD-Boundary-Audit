@@ -1,7 +1,7 @@
 Repository figure numbers now match the manuscript.
   Figure 1  schematic reproducibility-audit framework  (R/assets/Figure1_hero.svg; not R-generated)
   Figure 2  R/figures/Figure2_consensus.R           -> output/figures/Figure2.png
-  Figure 3  R/figures/Figure3_generalization.R + Figure3b_CSF.R -> Figure3_panelA/B.png
+  Figure 3  R/figures/Figure3_combined.R -> output/figures/Figure3.png  (manuscript body: portrait, panels a+b; component scripts: Figure3_generalization.R + Figure3b_CSF.R -> Figure3_panelA/B.png)
   Figure 4  R/figures/Figure4_metabolic_artifact.R  -> Figure4.png
   Figure 5  R/figures/Figure5_brainCSF_prognosis.R  -> Figure5.png  (panel b Cox: R/analysis/Figure5b_prognosis_cox.R)
   Figure 6  R/figures/Figure6_driver_signatures.R   -> Figure6.png
