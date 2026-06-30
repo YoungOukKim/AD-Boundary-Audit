@@ -5,6 +5,7 @@ Repository figure numbers now match the manuscript.
   Figure 4  R/figures/Figure4_metabolic_artifact.R  -> Figure4.png
   Figure 5  R/figures/Figure5_brainCSF_prognosis.R  -> Figure5.png  (panel b Cox: R/analysis/Figure5b_prognosis_cox.R)
   Figure 6  R/figures/Figure6_driver_signatures.R   -> Figure6.png
+  Figure 7  R/analysis/synthetic_benchmark.R        -> output/benchmark/Figure_synthetic_benchmark.png  (ground-truth benchmark; sensitivity 100% / specificity 94%; self-contained synthetic data, set.seed 42)
 
 Cell-type generalization audit (Discussion, not a numbered figure):
   data/celltype_audit/binmeans_{Astrocyte,Microglia}.csv  (bundled inputs)
@@ -19,6 +20,12 @@ Cell-type generalization audit (Discussion, not a numbered figure):
 
 Added analyses (R/analysis/):
   boundary_detection.R                -> standalone 9-algorithm/19-component engine (set.seed 42)
+  synthetic_benchmark.R               -> Figure 7 ground-truth benchmark: plants known boundaries in synthetic
+                                         marker x bin matrices; applies the SAME engine + audit gates (consensus
+                                         support, random-panel specificity, leave-one-marker-out) under 5 regimes
+                                         (real / global-offset / null / ramp / single-marker decoy). A-priori gates
+                                         (S*=95th pct null support; p<=0.05; LOMO<=1 bin). NPERM=300, B=20, K=44.
+                                         -> output/benchmark/{partA.csv, global.csv, lomo.csv, summary.txt, Figure_synthetic_benchmark.png}
   verify_correction_consistency.R     -> HK-flat & METAB-conservation under one genome-wide correction
                                          input: data/metabolic_correction/panel_correction_z.csv
   external_marker_audit.R             -> adjudicates external candidate markers (NPTX1/NPTXR/NPTX2/NRGN/SNAP25/VAMP2)
