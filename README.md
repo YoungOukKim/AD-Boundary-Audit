@@ -134,7 +134,7 @@ Kim YO, Heo WM, Park SJ, Kim YC, Cho YE (2026). *A reproducibility-audit framewo
 
 ## Competing interests
 
-W.M.H. is Chief Executive Officer of BioXP, Inc., and Y.O.K. is Director of its Research Institute; BioXP, Inc. provided research support for this study. W.M.H., Y.O.K. and Y.C.K. are affiliated with BioXP, Inc. and therefore declare a competing financial interest. BioXP, Inc. has filed a patent application (Republic of Korea, filed 24 June 2026), with W.M.H., Y.O.K. and Y.C.K. as inventors, relating to the use of PTGDS and LCN2 as biomarkers for the diagnosis of Alzheimer's disease; both markers are evaluated in this study. S.J.P. and Y.E.C. declare no competing interests.
+W.M.H. is Chief Executive Officer of BioXP, Inc., and Y.O.K. is Director of its Research Institute; BioXP, Inc. provided research support for this study. W.M.H., Y.O.K. and Y.C.K. are affiliated with BioXP, Inc. and therefore declare a competing financial interest. BioXP, Inc. has filed a patent application (Republic of Korea, filed 17 April 2026), with W.M.H., Y.O.K. and Y.C.K. as inventors, relating to the use of PTGDS and LCN2 as biomarkers for the diagnosis of Alzheimer's disease; both markers are evaluated in this study. S.J.P. and Y.E.C. declare no competing interests.
 
 ## License
 
