@@ -1,11 +1,11 @@
 # =============================================================================
-# SuppFig_celltype_generalization.R   (ggplot, matches manuscript theme_paper)
+# SuppFigS4_celltype_generalization.R   (ggplot, matches manuscript theme_paper)
 # The identical multi-algorithm consensus audit on an independent microglia
 # 44-panel localizes a transition concordant with the reactive-astrocyte panel.
 #   (a) 19-component boundary localization, both panels (primary cluster ~0.20)
 #   (b) panel PC1 trajectory with localized early transition
 # Inputs: data/celltype_audit/binmeans_{tag}.csv, output/.../multimethod_{tag}.csv
-# Output: output/figures/SuppFig_celltype_generalization.{png,tif}
+# Output: output/figures/SuppFigure_S4.{png,tif}
 # =============================================================================
 source("R/figures/utils.R")
 CTD<-"data/celltype_audit"; MM<-"output/tables/celltype_audit"
@@ -49,5 +49,5 @@ pb<-ggplot(df,aes(cps,pc1,colour=panel,linetype=panel))+
 
 fig<-(pa/pb)+plot_layout(heights=c(0.85,1.1))+
   plot_annotation(tag_levels="a")& theme(plot.tag=element_text(face="bold",size=16.1))
-save_fig(fig,"SuppFig_celltype_generalization.png",13,11.595)
-tiff(file.path(OUTF,"SuppFig_celltype_generalization.tif"),width=13,height=11.595,units="in",res=600,compression="lzw"); print(fig); dev.off()
+save_fig(fig,"SuppFigure_S4.png",13,11.595)
+tiff(file.path(OUTF,"SuppFigure_S4.tif"),width=13,height=11.595,units="in",res=600,compression="lzw"); print(fig); dev.off()

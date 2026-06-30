@@ -1,10 +1,10 @@
 # =============================================================================
-# SuppFig_global_correction_control.R   (ggplot, matches theme_paper)
+# SuppFigS3_global_correction_control.R   (ggplot, matches theme_paper)
 # Housekeeping negative control: 14 constitutive HK genes stay FLAT before/after
 # the genome-wide correction -> it removes only the shared offset, not signal.
 #   (a) HK trajectories pre/post   (b) effect magnitude vs signal-gene scale
 # Input: data/metabolic_correction/panel_correction_z.csv
-# Output: output/figures/SuppFig_global_correction_control.{png,tif}
+# Output: output/figures/SuppFigure_S3.{png,tif}
 # =============================================================================
 source("R/figures/utils.R")
 IN<-"data/metabolic_correction/panel_correction_z.csv"; CC<-"Astro"; REG<-"MTG"
@@ -38,5 +38,5 @@ pb<-ggplot(bars,aes(grp,val,fill=fill))+geom_col(width=0.62)+
   theme_paper
 fig<-(pa|pb)+plot_layout(widths=c(1.35,1))+
   plot_annotation(tag_levels="a")& theme(plot.tag=element_text(face="bold",size=16.1))
-save_fig(fig,"SuppFig_global_correction_control.png",13,5.417)
-tiff(file.path(OUTF,"SuppFig_global_correction_control.tif"),width=13,height=5.417,units="in",res=600,compression="lzw"); print(fig); dev.off()
+save_fig(fig,"SuppFigure_S3.png",13,5.417)
+tiff(file.path(OUTF,"SuppFigure_S3.tif"),width=13,height=5.417,units="in",res=600,compression="lzw"); print(fig); dev.off()

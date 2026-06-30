@@ -1,11 +1,11 @@
 # =============================================================================
-# SuppFigS3_pseudobulk.R
-# Supplementary Fig. S3. Donor-level (pseudobulk) testing is required.
+# SuppFigS5_pseudobulk.R
+# Supplementary Fig. S5. Donor-level (pseudobulk) testing is required.
 #   (a) DEGs at FDR<0.05 vs nuclei: cell-level (red) vs pseudobulk (blue)
 #   (b) inflation = cell-DEG / pseudobulk-DEG (sorted; median line)
 #   (c) cell-level DEGs biased to high expression (mean expr DEG vs all)
 # Input : P3_pseudobulk_vs_celllevel.csv
-# Output: output/figures/SuppFigure_S3.png
+# Output: output/figures/SuppFigure_S5.png
 # =============================================================================
 source("R/figures/utils.R")
 d <- read.csv(file.path(DATA, "P3_pseudobulk_vs_celllevel.csv"), check.names = FALSE)
@@ -31,4 +31,4 @@ pc <- ggplot(d, aes(meanexpr_all, meanexpr_cellDEG)) +
   labs(title = "DEGs biased to high expression",
        subtitle = sprintf("%d/%d types above diagonal", above, nrow(d)),
        x = "mean expr, all tested genes", y = "mean expr, cell-level DEGs") + theme_paper
-save_fig((pa | pb | pc) + plot_annotation(tag_levels = "a") & theme(plot.tag = element_text(face = "bold", size = 13)), "SuppFigure_S3.png", w = 13, h = 3.98)
+save_fig((pa | pb | pc) + plot_annotation(tag_levels = "a") & theme(plot.tag = element_text(face = "bold", size = 13)), "SuppFigure_S5.png", w = 13, h = 3.98)

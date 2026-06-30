@@ -78,9 +78,9 @@ Filenames are intentionally not renamed to avoid breaking hard-coded paths. Note
 |---|---|---|
 | Supp. Fig. S1 | CPS-0.21 transition recovered across MTG cell types | `R/figures/SuppFigS1_pancellular.R` |
 | Supp. Fig. S2 | AD-GWAS convergence on the CPS-0.207 boundary (microglia) | `R/figures/SuppFigS2_GWAS.R` |
-| Supp. Fig. S3 | Donor-level (pseudobulk) testing is required | `R/figures/SuppFigS3_pseudobulk.R` |
-| Supp. Fig. (S4) | Audit generalizes across cell types (microglia panel) | `R/figures/SuppFig_celltype_generalization.R` |
-| Supp. Fig. (S3 ctrl) | Housekeeping negative control for global correction | `R/figures/SuppFig_global_correction_control.R` |
+| Supp. Fig. S3 | Housekeeping negative control for the global-expression correction | `R/figures/SuppFigS3_global_correction_control.R` |
+| Supp. Fig. S4 | Audit generalizes across cell types (microglia panel) | `R/figures/SuppFigS4_celltype_generalization.R` |
+| Supp. Fig. S5 | Donor-level (pseudobulk) testing is required | `R/figures/SuppFigS5_pseudobulk.R` |
 | Supp. Fig. (EC) | Entorhinal non-replication (supports Fig. 3) | `R/figures/SuppFig_EC_nonreplication.R` |
 | Supp. Tables S1–S3 | Panel composition / consensus breakpoints / drivers | `R/tables/make_supp_tables.R` |
 
