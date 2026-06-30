@@ -22,12 +22,13 @@
 #  benchmark uses a finer, fixed grid for clean localization resolution.)
 #
 # Run from repo root:  Rscript R/analysis/synthetic_benchmark.R
-# Outputs: output/benchmark/{partA.csv, global.csv, lomo.csv, summary.txt,
-#          Figure_synthetic_benchmark.png}
+# Outputs: output/tables/benchmark/{partA.csv, global.csv, lomo.csv, summary.txt} +
+#          output/figures/Figure7_benchmark.png
 # Runtime ~25 min single-core (segmented engine ~0.5 s/call; leave-one-marker-out adds ~18 min).
 # =============================================================================
 suppressWarnings(suppressMessages(source("R/analysis/boundary_detection.R")))
-OUT <- "output/benchmark"; dir.create(OUT, recursive = TRUE, showWarnings = FALSE)
+FIG_OUT <- "output/figures";          dir.create(FIG_OUT, recursive = TRUE, showWarnings = FALSE)
+TAB_OUT <- "output/tables/benchmark"; dir.create(TAB_OUT, recursive = TRUE, showWarnings = FALSE)
 
 ## consensus = densest breakpoint within +/-0.05 (repo: celltype_audit_from_raw.R)
 consensus <- function(bp){ bp <- bp[!is.na(bp)]; if(!length(bp)) return(list(bp=NA,n=0))
@@ -94,11 +95,11 @@ df$cert_2gate <- (df$support >= S_STAR) & (df$pspec <= ALPHA)
 # 3-gate: LOMO applies only where one marker could drive the boundary (real_spec, decoy);
 # null/ramp/global carry no dominant marker, so their 3-gate equals their 2-gate.
 df$cert_3gate <- df$cert_2gate & ( is.na(df$maxshift) | df$maxshift <= LOMO_TOL )
-write.csv(df[df$regime!="global",], file.path(OUT,"partA.csv"), row.names = FALSE)
-write.csv(df[df$regime=="global",], file.path(OUT,"global.csv"), row.names = FALSE)
+write.csv(df[df$regime!="global",], file.path(TAB_OUT,"partA.csv"), row.names = FALSE)
+write.csv(df[df$regime=="global",], file.path(TAB_OUT,"global.csv"), row.names = FALSE)
 # leave-one-marker-out table (real_spec & decoy; all replicates) for the figure
 L <- df[df$regime %in% c("real_spec","decoy"), c("regime","rep","maxshift")]
-write.csv(L, file.path(OUT,"lomo.csv"), row.names = FALSE)
+write.csv(L, file.path(TAB_OUT,"lomo.csv"), row.names = FALSE)
 
 ## ============================ Part C: algorithm ablation ===================
 fams <- c("PCA","CUSUM","Mahal","Hier","KMeans","DP","Variance","Trajectory","Segmented")
@@ -114,7 +115,7 @@ cons_err <- median(sapply(real_comps, function(d) abs(consensus(d$breakpoint)$bp
 
 ## ============================ summary =======================================
 dg <- df[df$regime=="global",]
-sink(file.path(OUT,"summary.txt"))
+sink(file.path(TAB_OUT,"summary.txt"))
 cat("SYNTHETIC BENCHMARK -- operating characteristics\n================================================\n")
 cat(sprintf("B=%d bins, K=%d markers, NPERM=%d, seed 42 | gates: support>=%.0f, p<=%.2f, LOMO<=%.2f | truth=%.2f\n\n",
   B,K,NPERM,S_STAR,ALPHA,LOMO_TOL,TRUTH))
@@ -136,13 +137,13 @@ cat("\nABLATION single-algorithm localization error (|bp-truth|, median):\n"); p
 cat(sprintf("CONSENSUS error = %.3f (vs single-algorithm worst %.3f). No single method is reliable a priori;\n", cons_err, max(fam_err)))
 cat(sprintf("leave-one-algorithm-out consensus error stays %.3f-%.3f -> result not contingent on the exact count.\n", min(loo_err), max(loo_err)))
 sink()
-cat(readLines(file.path(OUT,"summary.txt")), sep="\n"); cat("\n")
+cat(readLines(file.path(TAB_OUT,"summary.txt")), sep="\n"); cat("\n")
 
 ## ============================ figure (base R) ===============================
 COL <- c(real_spec="#2E7D32",global="#E64A19",null="#9E9E9E",ramp="#7B1FA2",decoy="#C62828")
 LAB <- c(real_spec="real (panel-specific)",global="global offset",null="null (no signal)",ramp="monotonic ramp",decoy="single-marker decoy")
 lab <- function(letter,title){ mtext(letter,side=3,line=1.35,adj=0,font=2,cex=1.05); mtext(title,side=3,line=0.35,adj=0.5,font=2,cex=0.92) }
-png(file.path(OUT,"Figure_synthetic_benchmark.png"), width=2400, height=2200, res=300)
+png(file.path(FIG_OUT,"Figure7_benchmark.png"), width=2400, height=2200, res=300)
 par(mfrow=c(2,2), mar=c(4.2,4.4,3,1.2), mgp=c(2.5,0.8,0), cex.axis=0.85, cex.lab=0.95, font.main=2, cex.main=1.0)
 set.seed(1); jx <- runif(nrow(df),-0.18,0.18)
 plot(df$support+jx, df$pspec, type="n", xlab="Algorithm consensus support (of 19 components)",
@@ -167,4 +168,4 @@ barplot(loo_err,horiz=TRUE,las=1,col=adjustcolor("#2E7D32",0.55),border="white",
   xlab="Consensus error after removing one algorithm family",xlim=c(0,0.65),main="",cex.names=0.72); lab("d","Consensus is robust to algorithm choice")
 abline(v=cons_err,col="grey30",lwd=1.5,lty=2); text(0.62,1.5,sprintf("error stays\n%.3f-%.3f",min(loo_err),max(loo_err)),adj=c(1,0),cex=0.72,col="grey25",font=3)
 dev.off()
-message(">>> wrote ", file.path(OUT,"Figure_synthetic_benchmark.png"))
+message(">>> wrote ", file.path(FIG_OUT,"Figure7_benchmark.png"))

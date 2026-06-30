@@ -52,9 +52,8 @@ AD-Boundary-Audit/
 ├── data-external/                 # controlled-access inputs — NOT redistributed (README only)
 │
 └── output/                        # committed reference outputs
-    ├── figures/                   # Figure2–6, Supp figures (.png/.tif); _manuscript_reference/ (paper PNGs for unrendered items)
-    ├── benchmark/                  # Figure 7 synthetic benchmark: Figure_synthetic_benchmark.png + partA/global/lomo.csv + summary.txt
-    └── tables/                    # Table1–3, Supp Tables S1–S3, external_markers/, celltype_audit/
+    ├── figures/                   # Figure2–7 (Figure7_benchmark.png), Supp figures (.png/.tif); _manuscript_reference/
+    └── tables/                    # Table1–3, Supp Tables S1–S3, external_markers/, celltype_audit/, benchmark/ (synthetic: partA/global/lomo.csv + summary.txt)
 ```
 
 `FIGURE_MAPPING.txt` is the authoritative figure↔script map and follows the final manuscript numbering.
@@ -71,7 +70,7 @@ Filenames are intentionally not renamed to avoid breaking hard-coded paths. Note
 | Fig. 4 | Metabolic conservation is a global-expression artefact | `R/figures/Figure4_metabolic_artifact.R` → `Figure4.png` |
 | Fig. 5 | Brain–CSF discordance; no cognition-independent prognosis | `R/figures/Figure5_brainCSF_prognosis.R` (Cox: `R/analysis/Figure5b_prognosis_cox.R`) → `Figure5.png` |
 | Fig. 6 | Driver signatures and within-MTG robustness | `R/figures/Figure6_driver_signatures.R` → `Figure6.png` |
-| Fig. 7 | Synthetic ground-truth benchmark (operating characteristics) | `R/analysis/synthetic_benchmark.R` → `output/benchmark/Figure_synthetic_benchmark.png` |
+| Fig. 7 | Synthetic ground-truth benchmark (operating characteristics) | `R/analysis/synthetic_benchmark.R` → `output/figures/Figure7_benchmark.png` |
 
 ## Supplementary → script
 
@@ -110,7 +109,7 @@ Controlled-access inputs live in `data-external/` and are not redistributed (see
 | AD-GWAS convergence | microglia P = 0.029; astrocytes P = 0.22 | `data/P3_gwas_convergence_results.csv` |
 | Metabolic "conservation" | artefact: only 8 of 21 genes same-sign after global-expression correction (13 divergent) | `data/fig4_metabolic.csv` |
 | Prognosis | no value beyond cognition + amyloid–tau (adjusted Cox) | `output/tables/Figure5b_cox_HR.csv` |
-| Audit operating characteristics (synthetic ground truth) | sensitivity 100%, specificity 94%; each artefact rejected primarily by a distinct axis | `R/analysis/synthetic_benchmark.R` → `output/benchmark/summary.txt` |
+| Audit operating characteristics (synthetic ground truth) | sensitivity 100%, specificity 94%; each artefact rejected primarily by a distinct axis | `R/analysis/synthetic_benchmark.R` → `output/tables/benchmark/summary.txt` |
 
 The 44-marker panel deliberately excludes PTGDS, LCN2 and MAPT for independent boundary detection; PTGDS enters only as an externally validated positive control. The boundaries are cross-sectional staging constructs and carry no prognostic value beyond cognition and amyloid–tau status.
 
@@ -125,7 +124,7 @@ Deterministic consensus engine (`set.seed(42)`); `segmented` uses `n.boot = 0` (
 Rscript run_all.R
 ```
 
-Reproduced from bundled data (verified against the manuscript): Figures 2, 5, 6; Supp Fig S1; Supp Tables S1–S3, and the EC non-replication that supports Fig. 3. Require additional/controlled inputs (run as scaffolds when present): Figures 3, 4 and Supp Figs S2, S3 input regeneration, plus the from-raw audits in `R/analysis/` that read `data-external/`. Outputs are written to `output/figures` and `output/tables`. Figure 7 (`R/analysis/synthetic_benchmark.R`) is fully self-contained—it generates its own synthetic data with `set.seed(42)` and therefore reproduces the benchmark (sensitivity 100%, specificity 94%; each artefact class rejected primarily by a distinct axis) on any machine without external inputs, writing to `output/benchmark/` (~25 min single-core).
+Reproduced from bundled data (verified against the manuscript): Figures 2, 5, 6; Supp Fig S1; Supp Tables S1–S3, and the EC non-replication that supports Fig. 3. Require additional/controlled inputs (run as scaffolds when present): Figures 3, 4 and Supp Figs S2, S3 input regeneration, plus the from-raw audits in `R/analysis/` that read `data-external/`. Outputs are written to `output/figures` and `output/tables`. Figure 7 (`R/analysis/synthetic_benchmark.R`) is fully self-contained—it generates its own synthetic data with `set.seed(42)` and therefore reproduces the benchmark (sensitivity 100%, specificity 94%; each artefact class rejected primarily by a distinct axis) on any machine without external inputs, writing `output/figures/Figure7_benchmark.png` and `output/tables/benchmark/` (~25 min single-core).
 
 Prognosis values are final and computed. `output/tables/Figure5b_cox_HR.csv`, `data/fig5b_prognosis_computed.csv` and `data/fig5b_prognosis_manuscript.csv` all carry the confirmed baseline-deduped Cox output (n = 1,105 / 527 events; MMSE-threshold HR 3.79, molecular 0.99 unadjusted / 0.92 adjusted), which matches the manuscript Results, Methods and Fig. 5b caption. The manuscript fit was performed in Python (statsmodels `PHReg`); `R/analysis/Figure5b_prognosis_cox.R` is an equivalent R/`survival` re-implementation provided for full in-repo reproducibility. PTGDS vertex 0.47 (donor-level quadratic) vs bin-level segmented 0.56 is reconciled by `R/analysis/PTGDS_vertex_check.R`.
 
