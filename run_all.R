@@ -15,7 +15,7 @@ src <- function(p) { message("\n=== ", p, " ==="); tryCatch(source(p),
 # compute Figure 5b adjusted-Cox HRs first (writes data/fig5b_prognosis_computed.csv; skipped if ADNI data absent)
 src("R/analysis/Figure5b_prognosis_cox.R")
 src("R/analysis/celltype_generalization_audit.R")
-src("R/analysis/synthetic_benchmark.R")   # Figure 7: ground-truth benchmark (self-contained synthetic data; ~12 min single-core; writes output/benchmark/)
+src("R/analysis/synthetic_benchmark.R")   # Figure 7: ground-truth benchmark (self-contained synthetic data; ~25 min single-core; writes output/figures/Figure7_benchmark.png + output/tables/benchmark/)
 src("R/figures/Figure2_consensus.R")
 src("R/figures/Figure5_brainCSF_prognosis.R")
 src("R/figures/Figure6_driver_signatures.R")
