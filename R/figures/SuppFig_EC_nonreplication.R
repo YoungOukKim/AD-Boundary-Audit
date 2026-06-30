@@ -1,6 +1,6 @@
 # =============================================================================
 # SuppFig_EC_nonreplication.R
-# EC (Leng 2021) non-replication evidence underlying Figure 2 / Table 2.
+# EC (Leng 2021) non-replication evidence underlying Figure 3 / Table S5.
 #   (a) EC astrocyte panel logFC: FTH1 rises (opposite to MTG iron-storage
 #       decline) while TFRC/GFAP are flat; HMOX1 not testable (detection floor).
 #   (b) Positive control (GFAP-high vs GFAP-low astrocytes): canonical Leng

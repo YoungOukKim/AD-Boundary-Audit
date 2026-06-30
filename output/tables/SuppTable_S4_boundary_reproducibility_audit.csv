@@ -1,5 +1,5 @@
 Dataset (modality),Boundary detected,Leading marker (HMOX1),Reproduced?
-SEA-AD MTG (snRNA),Yes — CPS ≈ 0.21 (perm P &lt; 0.001),Strong (Δz − 0.69),Discovery
+SEA-AD MTG (snRNA),Yes — CPS ≈ 0.21 (perm P &lt; 0.001),Strong (Δz − 0.60),Discovery
 "SEA-AD A9, prefrontal (snRNA)",Attenuated — 1/8 cell types,Δz ≈ − 0.06,No
 "Leng EC, independent (snRNA, n = 10)",Not recovered — panel reversed,Floor; FTH1 + 0.54 (opposite),No
 ADNI CSF (TMT-MS / SomaScan),"Partial — MMSE-aligned, discordant",Undetected / reversed (ρ − 0.11),No

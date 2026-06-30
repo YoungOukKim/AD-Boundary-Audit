@@ -53,7 +53,7 @@ AD-Boundary-Audit/
 │
 └── output/                        # committed reference outputs
     ├── figures/                   # Figure2–7 (Figure7_benchmark.png), Supp figures (.png/.tif); _manuscript_reference/
-    └── tables/                    # Table1–3, Supp Tables S1–S3, external_markers/, celltype_audit/, benchmark/ (synthetic: partA/global/lomo.csv + summary.txt)
+    └── tables/                    # Supp Tables S1–S6 (S1–S3 via make_supp_tables.R; S4–S6 renamed from former Table1–3), external_markers/ (= Supp Table S7, donor-level), celltype_audit/, benchmark/ (synthetic: partA/global/lomo.csv + summary.txt)
 ```
 
 `FIGURE_MAPPING.txt` is the authoritative figure↔script map and follows the final manuscript numbering.
@@ -79,10 +79,14 @@ Filenames are intentionally not renamed to avoid breaking hard-coded paths. Note
 | Supp. Fig. S1 | CPS-0.21 transition recovered across MTG cell types | `R/figures/SuppFigS1_pancellular.R` |
 | Supp. Fig. S2 | AD-GWAS convergence on the CPS-0.207 boundary (microglia) | `R/figures/SuppFigS2_GWAS.R` |
 | Supp. Fig. S3 | Housekeeping negative control for the global-expression correction | `R/figures/SuppFigS3_global_correction_control.R` |
-| Supp. Fig. S4 | Audit generalizes across cell types (microglia panel) | `R/figures/SuppFigS4_celltype_generalization.R` |
-| Supp. Fig. S5 | Donor-level (pseudobulk) testing is required | `R/figures/SuppFigS5_pseudobulk.R` |
+| Supp. Fig. S4 | Donor-level (pseudobulk) testing is required | `R/figures/SuppFigS4_pseudobulk.R` |
+| Supp. Fig. S5 | Audit generalizes across cell types (microglia panel) | `R/figures/SuppFigS5_celltype_generalization.R` |
 | Supp. Fig. (EC) | Entorhinal non-replication (supports Fig. 3) | `R/figures/SuppFig_EC_nonreplication.R` |
 | Supp. Tables S1–S3 | Panel composition / consensus breakpoints / drivers | `R/tables/make_supp_tables.R` |
+| Supp. Table S4 | Boundary reproducibility audit across datasets | `output/tables/SuppTable_S4_boundary_reproducibility_audit.csv` |
+| Supp. Table S5 | Generalization across regions / cohorts / modalities | `output/tables/SuppTable_S5_generalization.csv` |
+| Supp. Table S6 | Marker validation across the four axes | `output/tables/SuppTable_S6_marker_validation.csv` |
+| Supp. Table S7 | Donor-level adjudication (14 candidate markers) | `output/tables/external_markers/sea_ad_panel_verdict.csv` |
 
 ## Data availability
 
@@ -101,9 +105,9 @@ Controlled-access inputs live in `data-external/` and are not redistributed (see
 |---|---|---|
 | Primary reactive-astrocyte transition (MTG astrocytes) | CPS 0.207; permutation 0/1000 random 44-gene panels | `data/consensus_breakpoints.csv` |
 | Cross-cell-type recovery (MTG) | 7 of 8 cell types | Supp. Fig. S1 |
-| Region test (HMOX1, Class I) | MTG Δz −0.69 → A9 ≈ −0.06 (1/8 cell types) | Table 1 |
-| Cohort test (Leng EC, n = 10) | panel reversed; FTH1 +0.54 (opposite to MTG) | Table 1; `data/testA/B_edgeR_*_EC.csv` |
-| Modality test (HMOX1 in CSF) | undetected (TMT-MS) / ρ = −0.11 (SomaScan) | Table 1; `data/csf_marker_rho.csv` |
+| Region test (HMOX1, Class I) | MTG Δz −0.60 → A9 ≈ −0.06 (1/8 cell types) | Table S4 |
+| Cohort test (Leng EC, n = 10) | panel reversed; FTH1 +0.54 (opposite to MTG) | Table S4; `data/testA/B_edgeR_*_EC.csv` |
+| Modality test (HMOX1 in CSF) | undetected (TMT-MS) / ρ = −0.11 (SomaScan) | Table S4; `data/csf_marker_rho.csv` |
 | Reactive marker GFAP (re-anchor) | CSF ρ = −0.17, P = 4×10⁻⁶ | `data/csf_marker_rho.csv` |
 | PTGDS positive control (Class II) | reproducible across regions/species/proteomics | external validation (companion study) |
 | AD-GWAS convergence | microglia P = 0.029; astrocytes P = 0.22 | `data/P3_gwas_convergence_results.csv` |

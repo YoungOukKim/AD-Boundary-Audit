@@ -17,15 +17,15 @@ Supplementary figures (S1-S5 match manuscript)
   Supp. Fig. S3  R/figures/SuppFigS3_global_correction_control.R   -> output/figures/SuppFigure_S3.{png,tif}
        (housekeeping negative control: 14 constitutive genes flat pre/post genome-wide correction)
        input: data/metabolic_correction/panel_correction_z.csv
-  Supp. Fig. S4  R/figures/SuppFigS4_celltype_generalization.R     -> output/figures/SuppFigure_S4.{png,tif}
+  Supp. Fig. S4  R/figures/SuppFigS4_pseudobulk.R                  -> output/figures/SuppFigure_S4.png
+       (donor-level / pseudobulk testing across 24 SEA-AD MTG cell types; 4,000-gene random universe)
+  Supp. Fig. S5  R/figures/SuppFigS5_celltype_generalization.R     -> output/figures/SuppFigure_S5.{png,tif}
        (audit generalizes across cell types: independent microglia 44-marker panel, CPS~0.20 concordant)
        analysis backing this figure listed below
-  Supp. Fig. S5  R/figures/SuppFigS5_pseudobulk.R                  -> output/figures/SuppFigure_S5.png
-       (donor-level / pseudobulk testing across 24 SEA-AD MTG cell types; 4,000-gene random universe)
   Supp. Fig. (EC, unnumbered)  R/figures/SuppFig_EC_nonreplication.R -> output/figures/SuppFig_EC_nonreplication.png
        (entorhinal cortex non-replication; supporting analysis for main Figure 3, not a numbered supplementary figure)
 
-Cell-type generalization audit (analysis backing Supp. Fig. S4):
+Cell-type generalization audit (analysis backing Supp. Fig. S5):
   data/celltype_audit/binmeans_{Astrocyte,Microglia}.csv  (bundled inputs)
   R/analysis/celltype_generalization_audit.R   -> reproduces boundary calls from bundled bin-means
   R/analysis/celltype_audit_from_raw.R         -> regenerates bin-means from SEA-AD h5ad (data-external/)
