@@ -23,3 +23,7 @@ Thumbs.db
 .idea/
 
 # NOTE: output/ is intentionally tracked (committed reference figures & tables).
+
+# ---- Python bytecode (analysis_py/) ----
+__pycache__/
+*.pyc
