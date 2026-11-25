@@ -108,7 +108,7 @@ the Sage Bionetworks AD Knowledge Portal
 | `detection_controls.csv` | the same detection audit across cell types, for the ambient band |
 | `donor_meta.csv` | donor metadata: CPS, staging, covariates |
 | `cps.xlsx` | the three published CPS fits compared in the axis-uncertainty analysis |
-| `repo_44panel_bin_means.csv` | the 44-marker bin matrix as deposited by the earlier study, used as the reference the reconstruction is checked against |
+| `SEAAD_44panel_bin_means.csv` | the 44-marker bin matrix as deposited by the earlier study, used as the reference the reconstruction is checked against. Byte-identical to `data/SEAAD_44panel_bin_means.csv`; kept here under the same name so the pipeline runs standalone and so one file does not travel under two names |
 
 The single extraction pass that produces the first five from the h5ad is
 documented in the manuscript's Methods. It needs the controlled-access object

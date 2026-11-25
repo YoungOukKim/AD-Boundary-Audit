@@ -1,7 +1,7 @@
 """Every number in the revised paper, from one script.
 
 The observed panel is the authors' own published bin matrix, taken verbatim from
-the repository (inputs/repo_44panel_bin_means.csv = AD-Boundary-Audit
+the repository (inputs/SEAAD_44panel_bin_means.csv = AD-Boundary-Audit
 data/SEAAD_44panel_bin_means.csv). That removes every preprocessing question
 from the observed side. Background panels for the null are rebuilt from the
 donor-level extract with the repository's own convention: z-score each gene
@@ -22,7 +22,7 @@ FLOOR, AMB_HI = 0.02, 0.176
 AMBIENT = ["P2RY12", "PLP1", "RBFOX3"]
 
 # ---- observed: the authors' published matrix --------------------------------
-pub = pd.read_csv(INPUT + "repo_44panel_bin_means.csv")
+pub = pd.read_csv(INPUT + "SEAAD_44panel_bin_means.csv")
 PANEL = [c for c in pub.columns if c not in ("cps_bin", "cps_center", "n_cells")]
 AX = pub.cps_center.to_numpy(float)
 MOBS = pub[PANEL].to_numpy(float)
