@@ -85,12 +85,14 @@ AD-Boundary-Audit/
 │   ├── inputs/             donor-level inputs (read, never written)
 │   ├── data/               tables the pipeline writes
 │   └── figures/            figures the pipeline writes
-│
-├── run_all.R               earlier study: entry point
-├── R/                      earlier study: code
-├── data/  output/          earlier study: data and committed outputs
-└── FIGURE_MAPPING.txt      earlier study: figure ↔ script map
+├── supplementary/          this study: supplementary tables
+└── previous-study/         the earlier four-axis audit, untouched
+                            (run_all.R, R/, data/, output/; see its README)
 ```
+
+The two studies both number their figures 1 to 5, which is why the earlier one
+sits in its own directory. Its deposited top-level layout is preserved under the
+tag `v1.0-four-axis-audit`.
 
 ## Inputs and what is not redistributed
 
@@ -108,7 +110,7 @@ the Sage Bionetworks AD Knowledge Portal
 | `detection_controls.csv` | the same detection audit across cell types, for the ambient band |
 | `donor_meta.csv` | donor metadata: CPS, staging, covariates |
 | `cps.xlsx` | the three published CPS fits compared in the axis-uncertainty analysis |
-| `SEAAD_44panel_bin_means.csv` | the 44-marker bin matrix as deposited by the earlier study, used as the reference the reconstruction is checked against. Byte-identical to `data/SEAAD_44panel_bin_means.csv`; kept here under the same name so the pipeline runs standalone and so one file does not travel under two names |
+| `SEAAD_44panel_bin_means.csv` | the 44-marker bin matrix as deposited by the earlier study, used as the reference the reconstruction is checked against. Byte-identical to `previous-study/data/SEAAD_44panel_bin_means.csv`; kept here under the same name so the pipeline runs standalone and so one file does not travel under two names |
 
 The single extraction pass that produces the first five from the h5ad is
 documented in the manuscript's Methods. It needs the controlled-access object
@@ -126,9 +128,11 @@ and is therefore not part of `run_all.py`.
 
 ## The earlier study
 
-The four-axis reproducibility audit that this study audits is preserved intact:
-entry point `run_all.R`, code in `R/`, data in `data/`, committed outputs in
-`output/`, and the state as deposited tagged `v1.0-four-axis-audit`.
+The four-axis reproducibility audit that this study audits is preserved intact
+in `previous-study/`: entry point `run_all.R`, code in `R/`, data in `data/`,
+committed outputs in `output/`. Run it from inside that directory, not from the
+repository root. The state as deposited, with those files at the top level, is
+tagged `v1.0-four-axis-audit`.
 
 Readers should note that the present study withdraws the specificity claim made
 for the CPS 0.207 boundary in that work, and reports that its nine-algorithm
@@ -139,3 +143,14 @@ and Ward and k-means return the same first boundary in 83.3% of panels.
 ## License
 
 MIT for code; shared derived data CC BY 4.0. See `LICENSE`.
+
+## Supplementary tables
+
+`supplementary/` holds the tables this study cites. Their numbering, S3 and S7,
+is inherited from the earlier study's series and is kept here so the manuscript
+and the files agree; a standalone submission would renumber them.
+
+| File | Cited as |
+|---|---|
+| `SuppTable_S3_drivers.csv` | Supplementary Table S3 — nucleus-level z of the panel markers by bin |
+| `SuppTable_S7_correction_sensitivity.csv` | Supplementary Table S7 — sensitivity to the 2026-06-25 SEA-AD metadata correction |
