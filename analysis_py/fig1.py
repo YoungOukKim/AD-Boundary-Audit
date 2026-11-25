@@ -97,5 +97,7 @@ ax.text(50, 2.0, "No claim examined here reaches “generalizable”, and only t
         fontsize=6.2, ha="center", va="center", color=INK2, style="italic", linespacing=1.45)
 
 fig.savefig(FIG + "Figure1.png")
-fig.savefig(FIG + "Figure1.pdf")
+# 고정 메타데이터: 생성 시각이 박히면 같은 그림도 실행마다 다른 바이트가 되어
+# 재현성 대조가 깨진다.
+fig.savefig(FIG + "Figure1.pdf", metadata={"CreationDate": None})
 print("saved Figure1")

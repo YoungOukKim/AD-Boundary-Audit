@@ -83,7 +83,9 @@ ygrid(ax)
 ax.set_title("what leave-one-donor-out sees", fontsize=7.3, pad=5)
 
 fig.savefig(FIG + "Figure2.png")
-fig.savefig(FIG + "Figure2.pdf")
+# 고정 메타데이터: 생성 시각이 박히면 같은 그림도 실행마다 다른 바이트가 되어
+# 재현성 대조가 깨진다.
+fig.savefig(FIG + "Figure2.pdf", metadata={"CreationDate": None})
 sens = d[d.regime == "real"].certified.mean()
 spec_new = 1 - d[d.regime != "real"].certified.mean()
 spec_old = 1 - d[d.regime != "real"].certified_old.mean()

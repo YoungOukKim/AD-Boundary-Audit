@@ -91,6 +91,8 @@ ax.set_xlabel("Spearman $\\rho$ with CPS")
 ax.set_title("CPS is not tau-privileged", fontsize=7.3, pad=6)
 
 fig.savefig(FIG + "Figure5.png")
-fig.savefig(FIG + "Figure5.pdf")
+# 고정 메타데이터: 생성 시각이 박히면 같은 그림도 실행마다 다른 바이트가 되어
+# 재현성 대조가 깨진다.
+fig.savefig(FIG + "Figure5.pdf", metadata={"CreationDate": None})
 print(f"saved Figure5 | pathology Ward {PBP:.3f} | in window {nin}/16 | at panel boundary {nour}/16 "
       f"| null median {np.median(w):.3f}")

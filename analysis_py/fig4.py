@@ -112,6 +112,8 @@ ax.text(0.5, -0.38,
 ax.set_title("agreement is redundancy, not support", fontsize=7.4, pad=5)
 
 fig.savefig(FIG + "Figure4.png")
-fig.savefig(FIG + "Figure4.pdf")
+# 고정 메타데이터: 생성 시각이 박히면 같은 그림도 실행마다 다른 바이트가 되어
+# 재현성 대조가 깨진다.
+fig.savefig(FIG + "Figure4.pdf", metadata={"CreationDate": None})
 print(f"saved Figure4 | ward-null p={f(w,BP):.3f} pc1-null p={f(p,BP):.3f} | "
       f"grid real {real.ward_first_mid*100:.0f}%")

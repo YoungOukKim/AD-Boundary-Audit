@@ -120,6 +120,8 @@ ax.text(0.97, 0.95, f"median {np.median(bv):.3f}\n95% CI {lo:.3f}–{hi:.3f}\n"
 ax.set_title("but the interval is wide", fontsize=7.2, pad=5)
 
 fig.savefig(FIG + "Figure3.png")
-fig.savefig(FIG + "Figure3.pdf")
+# 고정 메타데이터: 생성 시각이 박히면 같은 그림도 실행마다 다른 바이트가 되어
+# 재현성 대조가 깨진다.
+fig.savefig(FIG + "Figure3.pdf", metadata={"CreationDate": None})
 print(f"saved Figure3 | {int((~inside).sum())}/{len(L)} donors | CI {lo:.3f}-{hi:.3f} | "
       f"{int(res.n_panel-res.n_observable)} of {int(res.n_panel)} unadjudicable")
