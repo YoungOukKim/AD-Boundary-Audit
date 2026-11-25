@@ -1,5 +1,5 @@
 ,n_distinct
-CUSUM_PC1,7
+CUSUM_PC1,8
 CUSUM_PC2,8
 CUSUM_PC3,8
 DP_PC1,4
@@ -8,10 +8,10 @@ DP_PC3,5
 Hier_k3_bp1,4
 Hier_k3_bp2,6
 KMeans_k3_bp1,4
-KMeans_k3_bp2,5
+KMeans_k3_bp2,7
 Mahal_max_gap,5
 PCA_PC1,5
 PCA_PC2,6
 PCA_PC3,6
-Trajectory_inflection,6
-Variance_jump,6
+Trajectory_inflection,5
+Variance_jump,7
