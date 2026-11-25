@@ -16,24 +16,33 @@ The three components that differ in the last comparison are Segmented_PC1..3
 and the cause is documented below (.HAVE_SEG). An R re-implementation should be
 added and cross-checked once an R installation is available.
 
-KNOWN DEFECT FOUND WHILE WRITING THIS SCRIPT  (fix before submission)
---------------------------------------------------------------------
+SEGMENTED COMPONENTS ARE EXCLUDED, FOLLOWING THE MANUSCRIPT
+----------------------------------------------------------
+The manuscript (STAR Methods, 'Boundary-detection engine') states: "Components
+(9) depend on the segmented-regression implementation and are excluded from
+every analysis reported here; the remaining 16 reproduce the deposited values
+exactly." This script therefore reports 16-component consensus counts only.
+
+The reason the manuscript excludes them is reproduced here for the record:
 boundary_detection.R branches on `.HAVE_SEG <- requireNamespace("segmented")`.
 With the package present, Segmented_PC1/2/3 = 0.665898 / 0.654355 / 0.416294;
 without it, the 200-point fallback grid gives 0.835621 / 0.280384 / 0.243573.
-That moves 3 of 19 components and changes EVERY region count reported in
-Supp Table S2:
-    Primary(CPS~0.21)      4 -> 5
-    Substructure           4 -> 5
-    Secondary(0.39-0.42)   2 -> 1
-    Late split(0.54-0.67)  9 -> 7
-    (and one component falls beyond the late split)
-Supp Table S2 was generated WITH the package; the cell-type generalization
-outputs were generated WITHOUT it. `segmented` must be declared a pinned hard
-dependency (or the fallback removed) so the table is deterministic.
-None of the three affected components lies in the Primary group under the
-with-package branch, so the conclusions below are branch-independent; they are
-reported separately for the 16 branch-independent components.
+Grid-point tests on each panel's own axis confirm which branch produced each
+committed table: SuppTable_S2_consensus.csv was generated WITH the package,
+multimethod_Astrocyte.csv and multimethod_Microglia.csv WITHOUT it.
+
+OUTSTANDING REPOSITORY ACTION (not a manuscript defect)
+-------------------------------------------------------
+The deposited tables still carry 19 components and their region counts, while
+the manuscript reports 16. Reviewers who regenerate from this repository will
+find consensus counts that the manuscript does not state:
+    SuppTable_S2_consensus.csv            19 components, Segmented included
+    celltype_audit/generalization_summary 4/19 (astrocyte), 6/19 (microglia)
+    celltype_audit/headtohead_summary     3/19 (astrocyte), on a different
+                                          cell set: 70,009 astrocytes and
+                                          40,000 microglia, against 67,419 in
+                                          the deposited bin matrix
+These tables should be regenerated on 16 components before deposition.
 
 WHAT THE CORRECTION ACTUALLY SAYS
 ---------------------------------

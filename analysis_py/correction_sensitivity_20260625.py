@@ -19,24 +19,33 @@ The three components that differ in the last comparison are Segmented_PC1..3
 and the cause is documented below (.HAVE_SEG). An R re-implementation should be
 added and cross-checked once an R installation is available.
 
-KNOWN DEFECT FOUND WHILE WRITING THIS SCRIPT  (fix before submission)
---------------------------------------------------------------------
+SEGMENTED COMPONENTS ARE EXCLUDED, FOLLOWING THE MANUSCRIPT
+----------------------------------------------------------
+The manuscript (STAR Methods, 'Boundary-detection engine') states: "Components
+(9) depend on the segmented-regression implementation and are excluded from
+every analysis reported here; the remaining 16 reproduce the deposited values
+exactly." This script therefore reports 16-component consensus counts only.
+
+The reason the manuscript excludes them is reproduced here for the record:
 boundary_detection.R branches on `.HAVE_SEG <- requireNamespace("segmented")`.
 With the package present, Segmented_PC1/2/3 = 0.665898 / 0.654355 / 0.416294;
 without it, the 200-point fallback grid gives 0.835621 / 0.280384 / 0.243573.
-That moves 3 of 19 components and changes EVERY region count reported in
-Supp Table S2:
-    Primary(CPS~0.21)      4 -> 5
-    Substructure           4 -> 5
-    Secondary(0.39-0.42)   2 -> 1
-    Late split(0.54-0.67)  9 -> 7
-    (and one component falls beyond the late split)
-Supp Table S2 was generated WITH the package; the cell-type generalization
-outputs were generated WITHOUT it. `segmented` must be declared a pinned hard
-dependency (or the fallback removed) so the table is deterministic.
-None of the three affected components lies in the Primary group under the
-with-package branch, so the conclusions below are branch-independent; they are
-reported separately for the 16 branch-independent components.
+Grid-point tests on each panel's own axis confirm which branch produced each
+committed table: SuppTable_S2_consensus.csv was generated WITH the package,
+multimethod_Astrocyte.csv and multimethod_Microglia.csv WITHOUT it.
+
+OUTSTANDING REPOSITORY ACTION (not a manuscript defect)
+-------------------------------------------------------
+The deposited tables still carry 19 components and their region counts, while
+the manuscript reports 16. Reviewers who regenerate from this repository will
+find consensus counts that the manuscript does not state:
+    SuppTable_S2_consensus.csv            19 components, Segmented included
+    celltype_audit/generalization_summary 4/19 (astrocyte), 6/19 (microglia)
+    celltype_audit/headtohead_summary     3/19 (astrocyte), on a different
+                                          cell set: 70,009 astrocytes and
+                                          40,000 microglia, against 67,419 in
+                                          the deposited bin matrix
+These tables should be regenerated on 16 components before deposition.
 
 WHAT THE CORRECTION ACTUALLY SAYS
 ---------------------------------
@@ -95,7 +104,18 @@ PANELS = [
 PRIMARY = 'Hier_k3_bp1'
 SEGCOMP = {'Segmented_PC1', 'Segmented_PC2', 'Segmented_PC3'}
 CPS_037, CPS_016 = 0.180318627999973, 0.616531
-W_POINT, W_LP = 0.1620, 0.6667      # nucleus-count share; LP-provable maximum share
+
+# H21.33.037's share of the first bin.
+#   W_MEAS is the measured astrocyte share, 415 of the bin's 1,511 astrocytes
+#   (p3fig/data/leave_one_donor.csv; the bin's four donors contribute
+#   428 + 314 + 415 + 354 = 1,511, matching the deposited bin matrix exactly).
+#   W_LP is the linear-programming upper bound derived from n_cells and
+#   cps_center alone, kept for the microglia panel, where no per-donor cell
+#   count is available.
+#   The measured value also validates the closed-form location analysis used
+#   here: at W_MEAS this script returns 0.204893, and the exhaustive
+#   leave-one-donor-out run returns 0.204893 for the same donor.
+W_MEAS, W_LP = 415 / 1511, 0.6667
 
 
 def load(path):
@@ -158,16 +178,14 @@ for name, path in PANELS:
     r_star, breaks_to = min_radius(M, ctr)
     proxy = [i for i, L in enumerate(lab) if L in ('CPS0.65', '[0.6,0.7)')][0]
 
-    for w, wtag in ((W_POINT, 'nucleus_share_point_estimate'), (W_LP, 'LP_provable_maximum')):
+    for w, wtag in ((W_MEAS, 'measured_astrocyte_share_415_of_1511'), (W_LP, 'LP_provable_upper_bound')):
         c2 = ctr.copy(); c2[0] = (ctr[0] - w * CPS_037) / (1 - w)
         # (C) mechanism: contaminant profile = H20.33.016's own CPS bin
         d = w / (1 - w) * (M[0] - M[proxy])
         T = M.copy(); T[0] = M[0] + d
         got = detect_boundaries(T, c2)
         p = got[PRIMARY]
-        c_all, n_all = consensus(got, p)
-        c_bi, n_bi = consensus(got, p, branch_independent=True)
-        b_all, _ = consensus(base_all, base)
+        c_bi, _ = consensus(got, p, branch_independent=True)
         b_bi, _ = consensus(base_all, base, branch_independent=True)
         # worst proxy over all 8 bins
         worst = 0.0
@@ -181,9 +199,7 @@ for name, path in PANELS:
             corrected_primary_Ward=round(p, 9),
             shift=round(p - base, 9),
             published_rounded=round(base, 2), corrected_rounded=round(p, 2),
-            consensus_published_19=f'{b_all}/19', consensus_corrected_19=f'{c_all}/19',
-            consensus_published_16_branch_independent=f'{b_bi}/16',
-            consensus_corrected_16_branch_independent=f'{c_bi}/16',
+            consensus_published_16=f'{b_bi}/16', consensus_corrected_16=f'{c_bi}/16',
             bin1_centre_published=round(float(ctr[0]), 9),
             bin1_centre_corrected=round(float(c2[0]), 9),
             min_breaking_radius_r_star=round(r_star, 6),
