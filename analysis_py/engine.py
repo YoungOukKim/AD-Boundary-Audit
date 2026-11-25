@@ -1,3 +1,6 @@
+import sys, pathlib
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from paths import DATA, INPUT, FIG
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """

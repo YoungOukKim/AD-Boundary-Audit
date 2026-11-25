@@ -1,0 +1,84 @@
+gene,detection,donors_passing_floor,verdict,in_panel,category
+GFAP,0.84998,84,observable,True,Reactive astrocyte
+SERPINA3,0.21019,84,observable,True,Reactive astrocyte
+VIM,0.40552,84,observable,True,Reactive astrocyte
+FBLN5,0.01548,22,below floor,True,Reactive astrocyte
+AQP4,0.91442,84,observable,True,Reactive astrocyte
+MERTK,0.82664,84,observable,True,Reactive astrocyte
+MFGE8,0.42438,84,observable,True,Reactive astrocyte
+SOX9,0.57392,84,observable,True,Reactive astrocyte
+FKBP5,0.82207,84,observable,True,Reactive astrocyte
+C3,0.11532,84,at/below ambient,True,A1 signaling
+STAT1,0.20475,84,observable,True,A1 signaling
+STAT3,0.73318,84,observable,True,A1 signaling
+SOCS3,0.0608,45,too few donors,True,A1 signaling
+NFKB1,0.42894,84,observable,True,A1 signaling
+IL1B,0.00056,0,below floor,True,Inflammation
+IL6,0.00015,0,below floor,True,Inflammation
+TNF,6e-05,0,below floor,True,Inflammation
+CCL2,0.05034,44,too few donors,True,Inflammation
+CXCL12,0.01538,17,below floor,True,Inflammation
+CXCL16,0.01756,20,below floor,True,Inflammation
+ICAM1,0.06394,71,at/below ambient,True,Vascular
+VCAM1,0.0034,0,below floor,True,Vascular
+VWF,0.01962,40,below floor,True,Vascular
+SELE,0.00295,1,below floor,True,Vascular
+OCLN,0.09376,82,at/below ambient,True,Vascular
+PECAM1,0.01138,6,below floor,True,Vascular
+APOE,0.6642,84,observable,True,AD risk
+CLU,0.97293,84,observable,True,AD risk
+TREM2,0.0011,0,below floor,True,AD risk
+CR1,0.004,0,below floor,True,AD risk
+CD33,0.00231,0,below floor,True,AD risk
+FTH1,0.73677,84,observable,True,Iron/oxidative
+FTL,0.60671,84,observable,True,Iron/oxidative
+HMOX1,0.02215,25,too few donors,True,Iron/oxidative
+NFE2L2,0.68166,84,observable,True,Iron/oxidative
+TFRC,0.30475,84,observable,True,Iron/oxidative
+NEFL,0.07326,80,at/below ambient,True,Injury/protective
+BDNF,0.0167,34,below floor,True,Injury/protective
+GDNF,0.00086,0,below floor,True,Injury/protective
+NGF,0.0116,13,below floor,True,Injury/protective
+APP,0.56174,84,observable,True,AD core/cell death
+CASP3,0.19281,84,observable,True,AD core/cell death
+BCL2,0.93496,84,observable,True,AD core/cell death
+TP53,0.30929,84,observable,True,AD core/cell death
+PTGDS,0.93729,84,observable,False,control
+LCN2,7e-05,0,below floor,False,control
+MAPT,0.85185,84,observable,False,control
+SLC16A3,0.06118,76,at/below ambient,False,control
+NPTX2,0.00989,8,below floor,False,control
+VGF,0.00908,13,below floor,False,control
+SCG2,0.05251,80,at/below ambient,False,control
+NPTX1,0.09815,84,at/below ambient,False,control
+NPTXR,0.14319,84,at/below ambient,False,control
+VAMP2,0.36163,84,observable,False,control
+NRGN,0.16443,84,at/below ambient,False,control
+SNAP25,0.43049,84,observable,False,control
+CNTN2,0.06342,83,at/below ambient,False,control
+CHI3L1,0.29974,84,observable,False,control
+ACTB,0.48494,84,observable,False,control
+GAPDH,0.54694,84,observable,False,control
+B2M,0.20018,84,observable,False,control
+PGK1,0.2928,84,observable,False,control
+TBP,0.1204,83,at/below ambient,False,control
+RPL13A,0.20261,84,observable,False,control
+HPRT1,0.17965,84,observable,False,control
+PPIA,0.20512,84,observable,False,control
+YWHAZ,0.44599,84,observable,False,control
+SDHA,0.31181,84,observable,False,control
+UBC,0.44335,84,observable,False,control
+RPLP0,0.11961,84,at/below ambient,False,control
+GUSB,0.13109,84,at/below ambient,False,control
+POLR2A,0.25118,84,observable,False,control
+P2RY12,0.13421,79,at/below ambient,False,control
+CX3CR1,0.00531,1,below floor,False,control
+TMEM119,0.00147,0,below floor,False,control
+CSF1R,0.02873,42,too few donors,False,control
+SLC1A2,0.99034,84,observable,False,control
+SLC1A3,0.99089,84,observable,False,control
+RBFOX3,0.17614,84,at/below ambient,False,control
+PLP1,0.14511,83,at/below ambient,False,control
+MBP,0.12612,84,at/below ambient,False,control
+PDGFRA,0.01194,8,below floor,False,control
+CLDN5,0.0034,1,below floor,False,control

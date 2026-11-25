@@ -1,0 +1,65 @@
+cell_type,gene,in_panel44,category,n_cells,detection,donors_passing_floor,n_donors,verdict
+Astrocyte,AQP4,True,Reactive astrocyte,67419,0.91442,84,84,observable
+Astrocyte,P2RY12,False,(not in panel),67419,0.13421,79,84,observable
+Astrocyte,CX3CR1,False,(not in panel),67419,0.00531,1,84,BELOW FLOOR - not observable
+Astrocyte,TMEM119,False,(not in panel),67419,0.00147,0,84,BELOW FLOOR - not observable
+Astrocyte,SLC1A2,False,(not in panel),67419,0.99034,84,84,observable
+Astrocyte,RBFOX3,False,(not in panel),67419,0.17614,84,84,observable
+Astrocyte,PLP1,False,(not in panel),67419,0.14511,83,84,observable
+Astrocyte,CLDN5,False,(not in panel),67419,0.0034,1,84,BELOW FLOOR - not observable
+Microglia,AQP4,True,Reactive astrocyte,38905,0.03218,57,84,too few donors
+Microglia,P2RY12,False,(not in panel),38905,0.67765,84,84,observable
+Microglia,CX3CR1,False,(not in panel),38905,0.49652,84,84,observable
+Microglia,TMEM119,False,(not in panel),38905,0.19995,84,84,observable
+Microglia,SLC1A2,False,(not in panel),38905,0.14415,83,84,observable
+Microglia,RBFOX3,False,(not in panel),38905,0.1589,84,84,observable
+Microglia,PLP1,False,(not in panel),38905,0.13847,82,84,observable
+Microglia,CLDN5,False,(not in panel),38905,0.00195,0,84,BELOW FLOOR - not observable
+Oligodendrocyte,AQP4,True,Reactive astrocyte,105681,0.02453,54,84,too few donors
+Oligodendrocyte,P2RY12,False,(not in panel),105681,0.01383,20,84,BELOW FLOOR - not observable
+Oligodendrocyte,CX3CR1,False,(not in panel),105681,0.00323,1,84,BELOW FLOOR - not observable
+Oligodendrocyte,TMEM119,False,(not in panel),105681,0.00079,1,84,BELOW FLOOR - not observable
+Oligodendrocyte,SLC1A2,False,(not in panel),105681,0.10543,84,84,ambient band - qualify
+Oligodendrocyte,RBFOX3,False,(not in panel),105681,0.13634,84,84,observable
+Oligodendrocyte,PLP1,False,(not in panel),105681,0.98216,84,84,observable
+Oligodendrocyte,CLDN5,False,(not in panel),105681,0.00079,0,84,BELOW FLOOR - not observable
+OPC,AQP4,True,Reactive astrocyte,30438,0.07215,79,84,observable
+OPC,P2RY12,False,(not in panel),30438,0.15448,82,84,observable
+OPC,CX3CR1,False,(not in panel),30438,0.00453,1,84,BELOW FLOOR - not observable
+OPC,TMEM119,False,(not in panel),30438,0.00831,6,84,BELOW FLOOR - not observable
+OPC,SLC1A2,False,(not in panel),30438,0.95943,84,84,observable
+OPC,RBFOX3,False,(not in panel),30438,0.16069,84,84,observable
+OPC,PLP1,False,(not in panel),30438,0.233,83,84,observable
+OPC,CLDN5,False,(not in panel),30438,0.00207,1,84,BELOW FLOOR - not observable
+Endothelial,AQP4,True,Reactive astrocyte,1980,0.05051,49,84,too few donors
+Endothelial,P2RY12,False,(not in panel),1980,0.01465,20,84,BELOW FLOOR - not observable
+Endothelial,CX3CR1,False,(not in panel),1980,0.00808,12,84,BELOW FLOOR - not observable
+Endothelial,TMEM119,False,(not in panel),1980,0.00354,5,84,BELOW FLOOR - not observable
+Endothelial,SLC1A2,False,(not in panel),1980,0.16667,70,84,observable
+Endothelial,RBFOX3,False,(not in panel),1980,0.18485,70,84,observable
+Endothelial,PLP1,False,(not in panel),1980,0.14545,74,84,observable
+Endothelial,CLDN5,False,(not in panel),1980,0.96212,84,84,observable
+VLMC,AQP4,True,Reactive astrocyte,4204,0.04044,53,84,too few donors
+VLMC,P2RY12,False,(not in panel),4204,0.01641,27,84,BELOW FLOOR - not observable
+VLMC,CX3CR1,False,(not in panel),4204,0.00904,16,84,BELOW FLOOR - not observable
+VLMC,TMEM119,False,(not in panel),4204,0.00238,3,84,BELOW FLOOR - not observable
+VLMC,SLC1A2,False,(not in panel),4204,0.27307,84,84,observable
+VLMC,RBFOX3,False,(not in panel),4204,0.18007,81,84,observable
+VLMC,PLP1,False,(not in panel),4204,0.14962,83,84,observable
+VLMC,CLDN5,False,(not in panel),4204,0.01594,27,84,BELOW FLOOR - not observable
+Excitatory,AQP4,True,Reactive astrocyte,671689,0.15069,83,84,observable
+Excitatory,P2RY12,False,(not in panel),671689,0.13631,72,84,observable
+Excitatory,CX3CR1,False,(not in panel),671689,0.00658,1,84,BELOW FLOOR - not observable
+Excitatory,TMEM119,False,(not in panel),671689,0.00206,0,84,BELOW FLOOR - not observable
+Excitatory,SLC1A2,False,(not in panel),671689,0.65646,84,84,observable
+Excitatory,RBFOX3,False,(not in panel),671689,0.99268,84,84,observable
+Excitatory,PLP1,False,(not in panel),671689,0.24944,83,84,observable
+Excitatory,CLDN5,False,(not in panel),671689,0.00244,1,84,BELOW FLOOR - not observable
+Inhibitory,AQP4,True,Reactive astrocyte,320592,0.04131,79,84,observable
+Inhibitory,P2RY12,False,(not in panel),320592,0.04645,75,84,observable
+Inhibitory,CX3CR1,False,(not in panel),320592,0.00523,0,84,BELOW FLOOR - not observable
+Inhibitory,TMEM119,False,(not in panel),320592,0.00153,0,84,BELOW FLOOR - not observable
+Inhibitory,SLC1A2,False,(not in panel),320592,0.53101,84,84,observable
+Inhibitory,RBFOX3,False,(not in panel),320592,0.9226,84,84,observable
+Inhibitory,PLP1,False,(not in panel),320592,0.20207,82,84,observable
+Inhibitory,CLDN5,False,(not in panel),320592,0.00217,0,84,BELOW FLOOR - not observable
