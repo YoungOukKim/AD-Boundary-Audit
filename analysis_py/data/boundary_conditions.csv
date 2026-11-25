@@ -1,0 +1,97 @@
+condition,component,breakpoint
+baseline,CUSUM_PC3,0.17008679664063536
+baseline,Hier_k3_bp1,0.20682968717701833
+baseline,KMeans_k3_bp1,0.20682968717701833
+baseline,Variance_jump,0.20682968717701833
+baseline,Trajectory_inflection,0.2435725777134013
+baseline,PCA_PC3,0.2635725777134013
+baseline,Hier_k3_bp2,0.2868881276909322
+baseline,KMeans_k3_bp2,0.2868881276909322
+baseline,DP_PC3,0.3880490625295162
+baseline,CUSUM_PC2,0.5398635137772434
+baseline,PCA_PC1,0.542978857862007
+baseline,PCA_PC2,0.542978857862007
+baseline,Mahal_max_gap,0.597109368019777
+baseline,DP_PC1,0.597109368019777
+baseline,DP_PC2,0.597109368019777
+baseline,CUSUM_PC1,0.6543552222623107
+observable only,CUSUM_PC3,0.17008679664063536
+observable only,Hier_k3_bp1,0.20682968717701833
+observable only,KMeans_k3_bp1,0.20682968717701833
+observable only,Variance_jump,0.20682968717701833
+observable only,Trajectory_inflection,0.2435725777134013
+observable only,PCA_PC3,0.2635725777134013
+observable only,Hier_k3_bp2,0.2868881276909322
+observable only,KMeans_k3_bp2,0.2868881276909322
+observable only,DP_PC3,0.3880490625295162
+observable only,CUSUM_PC2,0.5398635137772434
+observable only,PCA_PC1,0.542978857862007
+observable only,PCA_PC2,0.542978857862007
+observable only,Mahal_max_gap,0.597109368019777
+observable only,DP_PC1,0.597109368019777
+observable only,DP_PC2,0.597109368019777
+observable only,CUSUM_PC1,0.6543552222623107
+ambient-residualized,CUSUM_PC3,0.17008679664063536
+ambient-residualized,Hier_k3_bp1,0.20682968717701833
+ambient-residualized,KMeans_k3_bp1,0.20682968717701833
+ambient-residualized,Trajectory_inflection,0.2435725777134013
+ambient-residualized,PCA_PC3,0.2635725777134013
+ambient-residualized,Hier_k3_bp2,0.2868881276909322
+ambient-residualized,KMeans_k3_bp2,0.2868881276909322
+ambient-residualized,DP_PC3,0.3880490625295162
+ambient-residualized,CUSUM_PC2,0.5398635137772434
+ambient-residualized,PCA_PC1,0.542978857862007
+ambient-residualized,PCA_PC2,0.542978857862007
+ambient-residualized,Mahal_max_gap,0.597109368019777
+ambient-residualized,DP_PC1,0.597109368019777
+ambient-residualized,DP_PC2,0.597109368019777
+ambient-residualized,CUSUM_PC1,0.6543552222623107
+ambient-residualized,Variance_jump,0.7024396823126644
+drop H21.33.001,CUSUM_PC3,0.17817669441920592
+drop H21.33.001,Hier_k3_bp1,0.2108746360663036
+drop H21.33.001,KMeans_k3_bp1,0.2108746360663036
+drop H21.33.001,Variance_jump,0.2108746360663036
+drop H21.33.001,Trajectory_inflection,0.2435725777134013
+drop H21.33.001,PCA_PC3,0.2635725777134013
+drop H21.33.001,Hier_k3_bp2,0.2868881276909322
+drop H21.33.001,KMeans_k3_bp2,0.2868881276909322
+drop H21.33.001,DP_PC3,0.3880490625295162
+drop H21.33.001,CUSUM_PC2,0.5398635137772434
+drop H21.33.001,PCA_PC1,0.542978857862007
+drop H21.33.001,PCA_PC2,0.542978857862007
+drop H21.33.001,Mahal_max_gap,0.597109368019777
+drop H21.33.001,DP_PC1,0.597109368019777
+drop H21.33.001,DP_PC2,0.597109368019777
+drop H21.33.001,CUSUM_PC1,0.6543552222623107
+ambient + drop donor,Hier_k3_bp1,0.2108746360663036
+ambient + drop donor,KMeans_k3_bp1,0.2108746360663036
+ambient + drop donor,Trajectory_inflection,0.2435725777134013
+ambient + drop donor,PCA_PC2,0.2635725777134013
+ambient + drop donor,PCA_PC3,0.2635725777134013
+ambient + drop donor,Hier_k3_bp2,0.2868881276909322
+ambient + drop donor,KMeans_k3_bp2,0.2868881276909322
+ambient + drop donor,CUSUM_PC2,0.5398635137772434
+ambient + drop donor,CUSUM_PC3,0.5398635137772434
+ambient + drop donor,PCA_PC1,0.542978857862007
+ambient + drop donor,Mahal_max_gap,0.597109368019777
+ambient + drop donor,DP_PC1,0.597109368019777
+ambient + drop donor,DP_PC2,0.597109368019777
+ambient + drop donor,DP_PC3,0.597109368019777
+ambient + drop donor,CUSUM_PC1,0.6543552222623107
+ambient + drop donor,Variance_jump,0.7024396823126644
+drop bin 1,Hier_k3_bp1,0.2868881276909322
+drop bin 1,CUSUM_PC3,0.33020367766846304
+drop bin 1,Trajectory_inflection,0.33020367766846304
+drop bin 1,Hier_k3_bp2,0.3880490625295162
+drop bin 1,PCA_PC3,0.4489431447463559
+drop bin 1,KMeans_k3_bp1,0.4928789805839064
+drop bin 1,DP_PC3,0.4928789805839064
+drop bin 1,CUSUM_PC2,0.5398635137772434
+drop bin 1,PCA_PC1,0.5476826118242488
+drop bin 1,PCA_PC2,0.5476826118242488
+drop bin 1,Mahal_max_gap,0.597109368019777
+drop bin 1,KMeans_k3_bp2,0.597109368019777
+drop bin 1,DP_PC1,0.597109368019777
+drop bin 1,DP_PC2,0.597109368019777
+drop bin 1,CUSUM_PC1,0.6543552222623107
+drop bin 1,Variance_jump,0.8864565168749874

@@ -1,149 +1,156 @@
-# A reproducibility-audit framework for generalizable versus dataset-specific molecular transition boundaries in Alzheimer's disease
+# Auditing molecular transition boundaries on binned disease axes
 
-![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg) ![Status](https://img.shields.io/badge/status-preprint%20in%20deposition-orange) ![R](https://img.shields.io/badge/R-%E2%89%A5%204.3-276DC3)
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+![Python](https://img.shields.io/badge/Python-3.13-3776AB)
+![Status](https://img.shields.io/badge/status-manuscript%20in%20submission-orange)
 
-Analysis code, derived data and figure/table outputs for a permutation-controlled, four-axis reproducibility audit of trajectory-based molecular staging in Alzheimer's disease. The framework asks whether a molecular transition boundary localized in one brain region behaves as an intrinsic, brain-wide event, and adjudicates candidate anchor markers as generalizable (Class II) or dataset-specific (Class I).
+Code, derived data and figures for a five-gate audit of molecular transition
+boundaries detected on binned disease-progression axes, benchmarked against
+ground truth and applied to a boundary in SEA-AD astrocytes that **we reported
+ourselves**.
 
-The manuscript is the source of truth; bundled CSVs reproduce the manuscript figures/tables in R (ggplot2). `Rscript run_all.R` from the repo root regenerates everything reproducible from bundled data; analyses requiring controlled-access inputs are run as scaffolds when those inputs are present (see Reproducibility).
+The study withdraws its own earlier specificity claim. A fixed 44-marker
+astrocyte panel in SEA-AD middle temporal gyrus returns a transition at CPS
+0.207. Audited here, that boundary survives dropping the 23 markers the assay
+cannot adjudicate, but one donor of 84 moves it past the donor gate, and 753 of
+1,000 expression-matched random panels land within 0.05 CPS of it. The published
+value below 0.001 arose because the observation was a clustering boundary while
+the null was accumulated from a principal-component breakpoint; scored like for
+like the value is 0.753. The cause is structural: reading a boundary at the
+first change of cluster label puts it on the first midpoint for two-thirds of
+random nine-bin labellings, and for every draw on this cohort's grid.
+
+The same audit run on neuropathological staging returns a different position, so
+it is not a procedure that rejects everything.
 
 ## Authors
 
-YoungOuk Kim¹† (corresponding), WooMyung Heo¹†, Se Jin Park²†, YoungChul Kim¹, Ye Eun Cho²
+YoungOuk Kim<sup>1</sup>† (corresponding), WooMyung Heo<sup>1</sup>†,
+Se Jin Park<sup>2</sup>†, YoungChul Kim<sup>1</sup>, Ye Eun Cho<sup>2</sup>
 
-¹ BioXP Research Institute, Donghae, Gangwon-do, Republic of Korea
-² Department of Food Biotechnology and Environmental Science, Kangwon National University, Chuncheon 24341, Republic of Korea
+<sup>1</sup> BioXP Research Institute, Donghae, Gangwon-do, Republic of Korea
+<sup>2</sup> Department of Food Biotechnology and Environmental Science, Kangwon
+National University, Chuncheon 24341, Republic of Korea
 
-† These authors contributed equally to this work.
-Corresponding author: YoungOuk Kim — yo.kim@bioxp.biz (BioXP Research Institute)
+† These authors contributed equally.
+Corresponding author: YoungOuk Kim — yo.kim@bioxp.biz
 
-## Abstract
+## Quick start
 
-Molecular staging of Alzheimer's disease (AD) increasingly defines transition boundaries along single-cell pseudo-progression trajectories, yet whether such boundaries reproduce across brain regions, cohorts and molecular modalities is largely untested. We developed a permutation-controlled framework that combines nine boundary-detection algorithms with a fixed reactive-astrocyte marker panel and applied it across independent datasets. In the Seattle Alzheimer's Disease Brain Cell Atlas middle temporal gyrus, it localized a transition that was robust across algorithms and recovered in most cell types, but that did not generalize: its leading marker was attenuated or absent in prefrontal cortex, entorhinal cortex and cerebrospinal fluid, and an apparent cross-region conservation of glial metabolic genes reflected a global-expression offset rather than a shared program. The same framework nonetheless certified an externally validated marker (astrocytic PTGDS) as reproducible across regions and modalities, showing that it distinguishes generalizable anchors from dataset-specific ones rather than rejecting all signals. We provide this four-axis audit—algorithmic consensus, region, cohort and modality—as a transferable, code-available control for trajectory-based staging in AD and other progressive proteinopathies, and suggest such auditing before a boundary is read as a biological stage.
+```bash
+python run_all.py              # every table, then every figure
+python run_all.py --tables     # tables only
+python run_all.py --figures    # figures only, from the tables already present
+python run_all.py --korean     # also the Korean-language figures
+```
 
-## Repository structure
+Requires Python ≥ 3.13 with numpy, scipy, pandas, scikit-learn and matplotlib.
+The versions this study was run under are pinned in `requirements.txt`. Nothing
+has to be downloaded: every input the pipeline reads is in `analysis_py/inputs`.
+
+## One table, one writer
+
+Each table in `analysis_py/data` is written by exactly one script, and
+`run_all.py` runs them in the only order in which they may be run. This is not
+housekeeping. An earlier version of this pipeline had two scripts writing one
+file name under different normalisation conventions, and running them in the
+wrong order silently changed a reported result — the same class of defect this
+study reports. The constraint is now enforced by the layout rather than by a
+reader noticing it.
+
+| Script | Writes |
+|---|---|
+| `detection.py` | `detection_astrocyte`, `hmox1_donors`, `bin1_donors` |
+| `final.py` | `observed_components`, `reconstruction_fragility`, `nulls`, `restriction`, `independence`, `independence_distinct`, `leave_one_donor`, `bootstrap`, `bin_composition` |
+| `conditions.py` | `boundary_conditions` |
+| `staging.py` | `pathology_axes`, `pathology_peraxis`, `pathology_engine`, `pathology_null` |
+| `benchmark.py` | `benchmark`, `benchmark_meta` |
+| `region_grid.py` | `region_grid_bias` |
+
+`engine.py` is the boundary-detection engine: a Python transcription of the R
+engine used in the earlier study, validated against the committed outputs of
+that study before it was used here. `paths.py` resolves every path from the
+repository root, so the pipeline runs wherever it is cloned.
+
+## Repository layout
 
 ```
 AD-Boundary-Audit/
-├── README.md                      # this file (GitHub landing page)
-├── FIGURE_MAPPING.txt             # authoritative figure/Supp ↔ script map (manuscript numbering)
-├── LICENSE                        # MIT (code); shared data CC BY 4.0
-├── .gitignore
-├── run_all.R                      # end-to-end orchestrator (Rscript run_all.R from repo root)
-│
-├── R/
-│   ├── analysis/                  # boundary engine + audits
-│   │   ├── boundary_detection.R           # standalone 9-algorithm / 19-component engine (set.seed 42)
-│   │   ├── synthetic_benchmark.R          # Figure 7: ground-truth benchmark (self-contained synthetic data)
-│   │   ├── celltype_audit_from_raw.R      # regenerate bin-means from SEA-AD h5ad (controlled input)
-│   │   ├── celltype_generalization_audit.R# boundary calls from bundled bin-means
-│   │   ├── verify_correction_consistency.R# HK-flat & metabolic conservation under genome-wide correction
-│   │   ├── external_marker_audit.R / _generic.R / _crosscohort.R / _panel_audit.R  # marker adjudication
-│   │   ├── panel_finalize.R               # merge per-cell + cross-cohort verdicts
-│   │   ├── PTGDS_vertex_check.R           # reconciles PTGDS vertex 0.47 vs bin-level segmented 0.56
-│   │   ├── CSF_TMT_detection_audit.R
-│   │   └── Figure5b_prognosis_cox.R       # adjusted Cox HRs (needs ADNI; writes fig5b CSV)
-│   ├── figures/                   # one script per figure / Supp figure (+ utils.R)
-│   ├── tables/                    # make_supp_tables.R
-│   └── assets/                    # Figure1_hero.svg (schematic; not R-generated)
-│
-├── data/                          # bundled derived CSVs (no raw / controlled data)
-│   ├── celltype_audit/            # binmeans_{Astrocyte,Microglia}.csv (+ README)
-│   └── metabolic_correction/      # panel_correction_z.csv
-├── data-external/                 # controlled-access inputs — NOT redistributed (README only)
-│
-└── output/                        # committed reference outputs
-    ├── figures/                   # Figure2–7 (Figure7_benchmark.png), Supp figures (.png/.tif); _manuscript_reference/
-    └── tables/                    # Supp Tables S1–S6 (S1–S3 via make_supp_tables.R; S4–S6 renamed from former Table1–3), external_markers/ (= Supp Table S7, donor-level), celltype_audit/, benchmark/ (synthetic: partA/global/lomo.csv + summary.txt)
+├── run_all.py              this study: entry point
+├── analysis_py/            this study: code
+│   ├── engine.py           19-component boundary-detection engine
+│   ├── detection.py  final.py  conditions.py  staging.py
+│   ├── benchmark.py  region_grid.py
+│   ├── fig1.py … fig5.py   figures; style.py, make_ko_figs.py
+│   ├── inputs/             donor-level inputs (read, never written)
+│   ├── data/               tables the pipeline writes
+│   └── figures/            figures the pipeline writes
+├── supplementary/          this study: supplementary tables
+└── previous-study/         the earlier four-axis audit, untouched
+                            (run_all.R, R/, data/, output/; see its README)
 ```
 
-`FIGURE_MAPPING.txt` is the authoritative figure↔script map and follows the final manuscript numbering.
+The two studies both number their figures 1 to 5, which is why the earlier one
+sits in its own directory. Its deposited top-level layout is preserved under the
+tag `v1.0-four-axis-audit`.
 
-Filenames are intentionally not renamed to avoid breaking hard-coded paths. Note: `data/drivers_master_event_corrected.csv` is the primary CPS ≈ 0.21 transition ("master event" was the pre-revision label; the manuscript text uses "primary").
+## Inputs and what is not redistributed
 
-## Figure → script
+`analysis_py/inputs` holds donor-level tables derived from the SEA-AD middle
+temporal gyrus snRNA-seq release. The release itself is controlled-access and is
+**not** redistributed here; obtain it from [sea-ad.org](https://sea-ad.org) or
+the Sage Bionetworks AD Knowledge Portal
+(`SEAAD_MTG_RNAseq_final-nuclei.2024-02-13.h5ad`).
 
-| Manuscript | Content | Script → output |
-|---|---|---|
-| Fig. 1 | Reproducibility-audit framework (schematic) | `R/assets/Figure1_hero.svg` (not R-generated) |
-| Fig. 2 | Multi-algorithm consensus transition in MTG | `R/figures/Figure2_consensus.R` → `Figure2.png` |
-| Fig. 3 | Region/cohort/modality non-generalization | `R/figures/Figure3_combined.R` (components: `Figure3_generalization.R` + `Figure3b_CSF.R`) → `Figure3.png` |
-| Fig. 4 | Metabolic conservation is a global-expression artefact | `R/figures/Figure4_metabolic_artifact.R` → `Figure4.png` |
-| Fig. 5 | Brain–CSF discordance; no cognition-independent prognosis | `R/figures/Figure5_brainCSF_prognosis.R` (Cox: `R/analysis/Figure5b_prognosis_cox.R`) → `Figure5.png` |
-| Fig. 6 | Driver signatures and within-MTG robustness | `R/figures/Figure6_driver_signatures.R` → `Figure6.png` |
-| Fig. 7 | Synthetic ground-truth benchmark (operating characteristics) | `R/analysis/synthetic_benchmark.R` → `output/figures/Figure7_benchmark.png` |
+| File | What it is |
+|---|---|
+| `donor_mean_Astrocyte.csv` | per-donor mean log-normalised expression, astrocytes, 84 donors with a CPS |
+| `donor_sumsq_Astrocyte.csv` | matching sums of squares |
+| `detection_by_donor_Astrocyte.csv` | per-donor, per-gene detection rate |
+| `detection_controls.csv` | the same detection audit across cell types, for the ambient band |
+| `donor_meta.csv` | donor metadata: CPS, staging, covariates |
+| `cps.xlsx` | the three published CPS fits compared in the axis-uncertainty analysis |
+| `SEAAD_44panel_bin_means.csv` | the 44-marker bin matrix as deposited by the earlier study, used as the reference the reconstruction is checked against. Byte-identical to `previous-study/data/SEAAD_44panel_bin_means.csv`; kept here under the same name so the pipeline runs standalone and so one file does not travel under two names |
 
-## Supplementary → script
+The single extraction pass that produces the first five from the h5ad is
+documented in the manuscript's Methods. It needs the controlled-access object
+and is therefore not part of `run_all.py`.
 
-| Manuscript | Content | Script |
-|---|---|---|
-| Supp. Fig. S1 | CPS-0.21 transition recovered across MTG cell types | `R/figures/SuppFigS1_pancellular.R` |
-| Supp. Fig. S2 | AD-GWAS convergence on the CPS-0.207 boundary (microglia) | `R/figures/SuppFigS2_GWAS.R` |
-| Supp. Fig. S3 | Housekeeping negative control for the global-expression correction | `R/figures/SuppFigS3_global_correction_control.R` |
-| Supp. Fig. S4 | Donor-level (pseudobulk) testing is required | `R/figures/SuppFigS4_pseudobulk.R` |
-| Supp. Fig. S5 | Audit generalizes across cell types (microglia panel) | `R/figures/SuppFigS5_celltype_generalization.R` |
-| Supp. Fig. (EC) | Entorhinal non-replication (supports Fig. 3) | `R/figures/SuppFig_EC_nonreplication.R` |
-| Supp. Tables S1–S3 | Panel composition / consensus breakpoints / drivers | `R/tables/make_supp_tables.R` |
-| Supp. Table S4 | Boundary reproducibility audit across datasets | `output/tables/SuppTable_S4_boundary_reproducibility_audit.csv` |
-| Supp. Table S5 | Generalization across regions / cohorts / modalities | `output/tables/SuppTable_S5_generalization.csv` |
-| Supp. Table S6 | Marker validation across the four axes | `output/tables/SuppTable_S6_marker_validation.csv` |
-| Supp. Table S7 | Donor-level adjudication (14 candidate markers) | `output/tables/external_markers/sea_ad_panel_verdict.csv` |
+## Reproducibility notes
 
-## Data availability
+- All random procedures use seed 42; the engine's k-means uses ten restarts.
+- The `segmented` R package changes three components' values depending on
+  whether it is installed. Those components are excluded from every analysis
+  reported here, and the Python engine reproduces the remaining 16 against the
+  earlier study's committed outputs.
+- `run_all.py` regenerates every table in `analysis_py/data` and every figure in
+  `analysis_py/figures` from `analysis_py/inputs` alone.
 
-| Dataset | Access | Link |
-|---|---|---|
-| SEA-AD snRNA-seq (MTG, DLPFC; 1.3M nuclei) | Public | https://portal.brain-map.org |
-| Entorhinal cortex snRNA-seq (Leng et al. 2021) | Public (GEO) | GSE147528 |
-| ADNI CSF proteomics (TMT-MS / SomaScan) | Registration + DUA | https://adni.loni.usc.edu |
-| Emory CSF TMT-MS columns | Header only (bundled) | `data/EMORY_CSF_TMT_MS_columns.txt` |
+## The earlier study
 
-Controlled-access inputs live in `data-external/` and are not redistributed (see `data-external/README.txt`): the SEA-AD MTG `.h5ad`, ADNI `.rda` tables, and Emory CSF TMT-MS subject-level matrix. Only derived, de-identified summaries needed to reproduce figures are bundled under `data/` (e.g. `csf_marker_rho.csv`, `csf_mmse_binned.csv`, bin-means). Figure 2/3 CSF ρ were computed from ADNI SomaScan (HMOX1 SeqId 17398-55) + MMSE; raw ADNI matrices are not re-hosted. Users must obtain restricted data independently.
+The four-axis reproducibility audit that this study audits is preserved intact
+in `previous-study/`: entry point `run_all.R`, code in `R/`, data in `data/`,
+committed outputs in `output/`. Run it from inside that directory, not from the
+repository root. The state as deposited, with those files at the top level, is
+tagged `v1.0-four-axis-audit`.
 
-## Key findings
-
-| Finding | Value | Source |
-|---|---|---|
-| Primary reactive-astrocyte transition (MTG astrocytes) | CPS 0.207; permutation 0/1000 random 44-gene panels | `data/consensus_breakpoints.csv` |
-| Cross-cell-type recovery (MTG) | 7 of 8 cell types | Supp. Fig. S1 |
-| Region test (HMOX1, Class I) | MTG Δz −0.60 → A9 ≈ −0.06 (1/8 cell types) | Table S4 |
-| Cohort test (Leng EC, n = 10) | panel reversed; FTH1 +0.54 (opposite to MTG) | Table S4; `data/testA/B_edgeR_*_EC.csv` |
-| Modality test (HMOX1 in CSF) | undetected (TMT-MS) / ρ = −0.11 (SomaScan) | Table S4; `data/csf_marker_rho.csv` |
-| Reactive marker GFAP (re-anchor) | CSF ρ = −0.17, P = 4×10⁻⁶ | `data/csf_marker_rho.csv` |
-| PTGDS positive control (Class II) | reproducible across regions/species/proteomics | external validation (companion study) |
-| AD-GWAS convergence | microglia P = 0.029; astrocytes P = 0.22 | `data/P3_gwas_convergence_results.csv` |
-| Metabolic "conservation" | artefact: only 8 of 21 genes same-sign after global-expression correction (13 divergent) | `data/fig4_metabolic.csv` |
-| Prognosis | no value beyond cognition + amyloid–tau (adjusted Cox) | `output/tables/Figure5b_cox_HR.csv` |
-| Audit operating characteristics (synthetic ground truth) | sensitivity 100%, specificity 94%; each artefact rejected primarily by a distinct axis | `R/analysis/synthetic_benchmark.R` → `output/tables/benchmark/summary.txt` |
-
-The 44-marker panel deliberately excludes PTGDS, LCN2 and MAPT for independent boundary detection; PTGDS enters only as an externally validated positive control. The boundaries are cross-sectional staging constructs and carry no prognostic value beyond cognition and amyloid–tau status.
-
-## Reproducibility
-
-R ≥ 4.3. Figure packages: `ggplot2`, `dplyr`, `tidyr`, `scales`, `patchwork`, `ggrepel`. Analysis extras: `segmented`, `cluster`, `edgeR` (EC pseudobulk). See script headers.
-
-Deterministic consensus engine (`set.seed(42)`); `segmented` uses `n.boot = 0` (record the installed version).
-
-```bash
-# from repo root
-Rscript run_all.R
-```
-
-Reproduced from bundled data (verified against the manuscript): Figures 2, 5, 6; Supp Fig S1; Supp Tables S1–S3, and the EC non-replication that supports Fig. 3. Require additional/controlled inputs (run as scaffolds when present): Figures 3, 4 and Supp Figs S2, S3 input regeneration, plus the from-raw audits in `R/analysis/` that read `data-external/`. Outputs are written to `output/figures` and `output/tables`. Figure 7 (`R/analysis/synthetic_benchmark.R`) is fully self-contained—it generates its own synthetic data with `set.seed(42)` and therefore reproduces the benchmark (sensitivity 100%, specificity 94%; each artefact class rejected primarily by a distinct axis) on any machine without external inputs, writing `output/figures/Figure7_benchmark.png` and `output/tables/benchmark/` (~25 min single-core).
-
-Prognosis values are final and computed. `output/tables/Figure5b_cox_HR.csv`, `data/fig5b_prognosis_computed.csv` and `data/fig5b_prognosis_manuscript.csv` all carry the confirmed baseline-deduped Cox output (n = 1,105 / 527 events; MMSE-threshold HR 3.79, molecular 0.99 unadjusted / 0.92 adjusted), which matches the manuscript Results, Methods and Fig. 5b caption. The manuscript fit was performed in Python (statsmodels `PHReg`); `R/analysis/Figure5b_prognosis_cox.R` is an equivalent R/`survival` re-implementation provided for full in-repo reproducibility. PTGDS vertex 0.47 (donor-level quadratic) vs bin-level segmented 0.56 is reconciled by `R/analysis/PTGDS_vertex_check.R`.
-
-## Citation
-
-Kim YO, Heo WM, Park SJ, Kim YC, Cho YE (2026). *A reproducibility-audit framework for generalizable versus dataset-specific molecular transition boundaries in Alzheimer's disease.* Preprint/DOI to be added upon deposition.
-
-## Competing interests
-
-W.M.H. is Chief Executive Officer of BioXP, Inc., and Y.O.K. is Director of its Research Institute; BioXP, Inc. provided research support for this study. W.M.H., Y.O.K. and Y.C.K. are affiliated with BioXP, Inc. and therefore declare a competing financial interest. BioXP, Inc. has filed a patent application (Republic of Korea, filed 17 April 2026), with W.M.H., Y.O.K. and Y.C.K. as inventors, relating to the use of PTGDS and LCN2 as biomarkers for the diagnosis of Alzheimer's disease; both markers are evaluated in this study. S.J.P. and Y.E.C. declare no competing interests.
+Readers should note that the present study withdraws the specificity claim made
+for the CPS 0.207 boundary in that work, and reports that its nine-algorithm
+consensus is substantially redundant: across 300 matched random panels the 16
+branch-independent components return a median of 10 distinct values per panel,
+and Ward and k-means return the same first boundary in 83.3% of panels.
 
 ## License
 
-Code is released under the MIT License. Openly shared derived-data files are released under CC BY 4.0. Restricted source datasets (SEA-AD, ADNI) remain governed by their own data-use agreements.
+MIT for code; shared derived data CC BY 4.0. See `LICENSE`.
 
-## Contact
+## Supplementary tables
 
-YoungOuk Kim (corresponding author) — BioXP Research Institute, Republic of Korea — yo.kim@bioxp.biz
+`supplementary/` holds the tables this study cites. Their numbering, S3 and S7,
+is inherited from the earlier study's series and is kept here so the manuscript
+and the files agree; a standalone submission would renumber them.
+
+| File | Cited as |
+|---|---|
+| `SuppTable_S3_drivers.csv` | Supplementary Table S3 — nucleus-level z of the panel markers by bin |
+| `SuppTable_S7_correction_sensitivity.csv` | Supplementary Table S7 — sensitivity to the 2026-06-25 SEA-AD metadata correction |
