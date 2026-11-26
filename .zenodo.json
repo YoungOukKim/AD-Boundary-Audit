@@ -52,5 +52,5 @@
       "scheme": "url"
     }
   ],
-  "notes": "The Seattle Alzheimer's Disease Brain Cell Atlas release reanalysed here (SEAAD_MTG_RNAseq_final-nuclei.2024-02-13.h5ad) is available from sea-ad.org and the Sage Bionetworks AD Knowledge Portal and is not redistributed in this deposit."
+  "notes": "The Seattle Alzheimer's Disease Brain Cell Atlas release reanalysed here (SEAAD_MTG_RNAseq_final-nuclei.2024-02-13.h5ad) is available from sea-ad.org and the Sage Bionetworks AD Knowledge Portal and is not redistributed in this deposit. Licensing is split, and the single licence field above records the code licence only: the code is MIT, while the derived data files the deposit ships (analysis_py/inputs, analysis_py/data, analysis_py/figures, supplementary, previous-study/data, previous-study/output) are released under CC BY 4.0. The repository's LICENSE file is authoritative."
 }

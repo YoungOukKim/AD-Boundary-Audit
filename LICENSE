@@ -21,8 +21,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ----------------------------------------------------------------------
-Derived data files openly shared in this repository (data/**, output/**) are
-released under the Creative Commons Attribution 4.0 International License
-(CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
-Restricted source datasets (SEA-AD, ADNI) referenced in data-external/ remain
-governed by their own data-use agreements and are NOT redistributed here.
+Derived data files openly shared in this repository are released under the
+Creative Commons Attribution 4.0 International License (CC BY 4.0):
+https://creativecommons.org/licenses/by/4.0/
+
+    analysis_py/inputs/**        donor-level tables this study reads
+    analysis_py/data/**          tables this study writes
+    analysis_py/figures/**       figures this study writes
+    supplementary/**             supplementary tables
+    previous-study/data/**       the earlier study's inputs
+    previous-study/output/**     the earlier study's figures and tables
+
+Restricted source datasets (SEA-AD, ADNI), referenced in
+previous-study/data-external/, remain governed by their own data-use
+agreements and are NOT redistributed here.
