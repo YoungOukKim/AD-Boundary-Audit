@@ -1,0 +1,56 @@
+{
+  "upload_type": "software",
+  "title": "AD-Boundary-Audit: auditing molecular transition boundaries on binned disease axes",
+  "version": "v2.0.0",
+  "language": "eng",
+  "access_right": "open",
+  "license": "MIT",
+  "creators": [
+    {
+      "name": "Kim, YoungOuk",
+      "affiliation": "BioXP Research Institute, Donghae, Gangwon-do, Republic of Korea"
+    },
+    {
+      "name": "Heo, WooMyung",
+      "affiliation": "BioXP Research Institute, Donghae, Gangwon-do, Republic of Korea"
+    },
+    {
+      "name": "Park, Se Jin",
+      "affiliation": "Department of Food Biotechnology and Environmental Science, Kangwon National University, Chuncheon, Republic of Korea"
+    },
+    {
+      "name": "Kim, YoungChul",
+      "affiliation": "BioXP Research Institute, Donghae, Gangwon-do, Republic of Korea"
+    },
+    {
+      "name": "Cho, Ye Eun",
+      "affiliation": "Department of Food Biotechnology and Environmental Science, Kangwon National University, Chuncheon, Republic of Korea"
+    }
+  ],
+  "description": "<p>Code, derived data and figures for a five-gate audit of molecular transition boundaries detected on binned disease-progression axes, benchmarked against ground truth and applied to a boundary in SEA-AD astrocytes that the authors reported themselves.</p><p>The study withdraws its own earlier specificity claim. A fixed 44-marker astrocyte panel in SEA-AD middle temporal gyrus returns a transition at CPS 0.207. Audited here, that boundary survives dropping the 23 markers the assay cannot adjudicate, but one donor of 84 moves it past the donor gate, and 753 of 1,000 expression-matched random panels land within 0.05 CPS of it. The published value below 0.001 arose because the observation was a clustering boundary while the null was accumulated from a principal-component breakpoint; scored like for like the value is 0.753. The cause is structural: reading a boundary at the first change of cluster label puts it on the first midpoint for two-thirds of random nine-bin labellings, and for every draw on this cohort's grid.</p><p><code>python run_all.py</code> regenerates every table and every figure from the deposited donor-level inputs. Each table is written by exactly one script. The earlier four-axis audit this study examines is preserved unchanged under <code>previous-study/</code> and under the tag <code>v1.0-four-axis-audit</code>.</p><p>No new data were generated. The SEA-AD release this work reanalyses is controlled-access and is not redistributed here.</p>",
+  "keywords": [
+    "reproducibility",
+    "single-nucleus RNA sequencing",
+    "change-point detection",
+    "permutation testing",
+    "pseudo-progression",
+    "detection limit",
+    "donor-level inference",
+    "Alzheimer's disease"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.64898/2026.08.24.746808",
+      "relation": "isDerivedFrom",
+      "resource_type": "publication-preprint",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "https://github.com/YoungOukKim/AD-Boundary-Audit",
+      "relation": "isSupplementTo",
+      "resource_type": "software",
+      "scheme": "url"
+    }
+  ],
+  "notes": "The Seattle Alzheimer's Disease Brain Cell Atlas release reanalysed here (SEAAD_MTG_RNAseq_final-nuclei.2024-02-13.h5ad) is available from sea-ad.org and the Sage Bionetworks AD Knowledge Portal and is not redistributed in this deposit."
+}
